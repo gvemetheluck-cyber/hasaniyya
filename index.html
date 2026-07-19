@@ -186,7 +186,7 @@
             </button>
 
             <!-- Console Switch Button -->
-            <button v-if="!isAuthenticated" @click="showResultsModal = false; showAddStudentModal = false; showParticipantsModal = false; loginError = ''; loginEmail = ''; loginPassword = ''; currentView = 'login'" class="py-2 px-3.5 bg-brand-primary border border-brand-accent/25 hover:bg-brand-secondary text-brand-accent text-xs font-bold rounded-xl shadow-glow-primary transition-all flex items-center gap-1.5 font-sans active:scale-95">
+            <button v-if="!isAuthenticated" @click="showResultsModal = false; showAddStudentModal = false; showParticipantsModal = false; loginError = ''; loginEmail = ''; loginPassword = ''; setView('login')" class="py-2 px-3.5 bg-brand-primary border border-brand-accent/25 hover:bg-brand-secondary text-brand-accent text-xs font-bold rounded-xl shadow-glow-primary transition-all flex items-center gap-1.5 font-sans active:scale-95">
               <i data-lucide="lock" class="w-3.5 h-3.5"></i>
               <span>Console</span>
             </button>
@@ -450,7 +450,8 @@
                         Class {{ getStudentClass(prog, prog.result.first) }}
                       </span>
                     </div>
-                              <!-- House badge -->
+                  </div>
+                  <!-- House badge -->
                   <span class="text-[9px] font-black px-2 py-0.5 rounded uppercase tracking-wider border font-sans" :class="[getTeamInfo(getStudentTeamId(prog, prog.result.first)).textClass, getTeamInfo(getStudentTeamId(prog, prog.result.first)).borderClass, 'bg-zinc-950/20']">
                     {{ getTeamInfo(getStudentTeamId(prog, prog.result.first)).name }}
                   </span>
