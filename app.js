@@ -97,9 +97,9 @@ const DEFAULT_PROGRAMS = [
 ];
 
 const TEAMS = [
-  { id: 'al-noor', name: 'Team Granada', color: '#c1121f', bgClass: 'bg-[#c1121f]', textClass: 'text-[#c1121f]', borderClass: 'border-[#c1121f]/40', icon: 'zap', hoverBg: 'hover:bg-[#c1121f]/10' },
-  { id: 'al-fath', name: 'Team Samarkand', color: '#00b4d8', bgClass: 'bg-[#00b4d8]', textClass: 'text-[#00b4d8]', borderClass: 'border-[#00b4d8]/40', icon: 'shield', hoverBg: 'hover:bg-[#00b4d8]/10' },
-  { id: 'al-buraq', name: 'Team Kairo', color: '#d4af37', bgClass: 'bg-[#d4af37]', textClass: 'text-[#d4af37]', borderClass: 'border-[#d4af37]/40', icon: 'award', hoverBg: 'hover:bg-[#d4af37]/10' }
+  { id: 'al-noor', name: 'Team Samarkand', color: '#00b4d8', bgClass: 'bg-[#00b4d8]', textClass: 'text-[#00b4d8]', borderClass: 'border-[#00b4d8]/40', icon: 'shield', hoverBg: 'hover:bg-[#00b4d8]/10' },
+  { id: 'al-fath', name: 'Team Granada', color: '#c1121f', bgClass: 'bg-[#c1121f]', textClass: 'text-[#c1121f]', borderClass: 'border-[#c1121f]/40', icon: 'zap', hoverBg: 'hover:bg-[#c1121f]/10' },
+  { id: 'al-buraq', name: 'Team Cairo', color: '#d4af37', bgClass: 'bg-[#d4af37]', textClass: 'text-[#d4af37]', borderClass: 'border-[#d4af37]/40', icon: 'award', hoverBg: 'hover:bg-[#d4af37]/10' }
 ];
 
 const DEFAULT_PHOTOS = [
