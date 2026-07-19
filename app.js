@@ -2,65 +2,113 @@
 const { createApp, ref, computed, watch, onMounted } = Vue;
 
 const DEFAULT_PROGRAMS = [
-  // Category 1: LP
-  { id: 'prog-1', name: 'Quran Recitation (Tajweed)', category: 'LP', status: 'Completed', students: [
-    { id: 'stud-lp-1', name: 'Muhammad Yasheen', teamId: 'al-noor', classLevel: 'Class 4', registeredAt: '2026-07-18T10:00:00Z' },
-    { id: 'stud-lp-2', name: 'Fatima Rida', teamId: 'al-fath', classLevel: 'Class 3', registeredAt: '2026-07-18T10:05:00Z' },
-    { id: 'stud-lp-3', name: 'Ibrahim Rashid', teamId: 'al-buraq', classLevel: 'Class 4', registeredAt: '2026-07-18T10:10:00Z' }
-  ], result: { first: 'stud-lp-1', second: 'stud-lp-2', third: 'stud-lp-3' } },
-  { id: 'prog-2', name: 'Islamic Songs (Nasheed)', category: 'LP', status: 'Completed', students: [
-    { id: 'stud-lp-4', name: 'Aisha Minha', teamId: 'al-noor', classLevel: 'Class 4', registeredAt: '2026-07-18T10:15:00Z' },
-    { id: 'stud-lp-5', name: 'Zainab Nafees', teamId: 'al-fath', classLevel: 'Class 2', registeredAt: '2026-07-18T10:20:00Z' },
-    { id: 'stud-lp-6', name: 'Yusuf Aman', teamId: 'al-buraq', classLevel: 'Class 3', registeredAt: '2026-07-18T10:25:00Z' }
-  ], result: { first: 'stud-lp-6', second: 'stud-lp-4', third: 'stud-lp-5' } },
-  { id: 'prog-3', name: 'Islamic Quiz (LP)', category: 'LP', status: 'Pending', students: [
-    { id: 'stud-lp-7', name: 'Omar Farooq', teamId: 'al-noor', classLevel: 'Class 4', registeredAt: '2026-07-18T10:30:00Z' },
-    { id: 'stud-lp-8', name: 'Asma Sadiq', teamId: 'al-fath', classLevel: 'Class 4', registeredAt: '2026-07-18T10:35:00Z' }
+  // Kids Boys & Girls
+  { id: 'prog-1', name: 'Baloon Pottikkal', category: 'Kids', status: 'Completed', students: [
+    { id: 'stud-k-1', name: 'Afnan Ahmed', teamId: 'al-noor', classLevel: 'Class 1', registeredAt: '2026-07-18T10:00:00Z' },
+    { id: 'stud-k-2', name: 'Rayan K', teamId: 'al-fath', classLevel: 'Class 1', registeredAt: '2026-07-18T10:05:00Z' },
+    { id: 'stud-k-3', name: 'Nihan Fathima', teamId: 'al-buraq', classLevel: 'Class 2', registeredAt: '2026-07-18T10:10:00Z' }
+  ], result: { first: 'stud-k-1', second: 'stud-k-2', third: 'stud-k-3' } },
+  { id: 'prog-2', name: 'Manjadi Perukkal', category: 'Kids', status: 'Ongoing', students: [
+    { id: 'stud-k-4', name: 'Zahra Fatima', teamId: 'al-noor', classLevel: 'Class 2', registeredAt: '2026-07-18T10:15:00Z' },
+    { id: 'stud-k-5', name: 'Muhammad Shamil', teamId: 'al-fath', classLevel: 'Class 1', registeredAt: '2026-07-18T10:20:00Z' }
   ], result: null },
-  { id: 'prog-4', name: 'Arabic Calligraphy (LP)', category: 'LP', status: 'Pending', students: [], result: null },
-  
-  // Category 2: UP
-  { id: 'prog-5', name: 'Quran Memorization (Hifz)', category: 'UP', status: 'Ongoing', students: [
-    { id: 'stud-up-1', name: 'Ahmad Bilal', teamId: 'al-noor', classLevel: 'Class 7', registeredAt: '2026-07-18T11:00:00Z' },
-    { id: 'stud-up-2', name: 'Hamza Khalid', teamId: 'al-fath', classLevel: 'Class 6', registeredAt: '2026-07-18T11:05:00Z' },
-    { id: 'stud-up-3', name: 'Maryam Ansar', teamId: 'al-buraq', classLevel: 'Class 7', registeredAt: '2026-07-18T11:10:00Z' }
-  ], result: null },
-  { id: 'prog-6', name: 'Hadith Memorization (UP)', category: 'UP', status: 'Pending', students: [
-    { id: 'stud-up-4', name: 'Khadija Nusrath', teamId: 'al-fath', classLevel: 'Class 5', registeredAt: '2026-07-18T11:15:00Z' }
-  ], result: null },
-  { id: 'prog-7', name: 'Arabic Speech (UP)', category: 'UP', status: 'Pending', students: [], result: null },
-  { id: 'prog-8', name: 'English Speech (UP)', category: 'UP', status: 'Pending', students: [], result: null },
-  { id: 'prog-9', name: 'Islamic Quiz (UP)', category: 'UP', status: 'Pending', students: [], result: null },
+  { id: 'prog-3', name: 'Memory Test', category: 'Kids', status: 'Pending', students: [], result: null },
+  { id: 'prog-4', name: 'Dictation Arabi (Class 1)', category: 'Kids', status: 'Pending', students: [], result: null },
+  { id: 'prog-5', name: 'Dictation Arabi & Malayalam (Class 2)', category: 'Kids', status: 'Pending', students: [], result: null },
 
-  // Category 3: High School
-  { id: 'prog-10', name: 'Quran Memorization (Senior Hifz)', category: 'High School', status: 'Completed', students: [
-    { id: 'stud-hs-1', name: 'Rayan Farhan', teamId: 'al-buraq', classLevel: 'Class 9', registeredAt: '2026-07-18T12:00:00Z' },
-    { id: 'stud-hs-2', name: 'Naufal Ali', teamId: 'al-noor', classLevel: 'Class 10', registeredAt: '2026-07-18T12:05:00Z' },
-    { id: 'stud-hs-3', name: 'Suhail Muhammad', teamId: 'al-fath', classLevel: 'Class 10', registeredAt: '2026-07-18T12:10:00Z' }
-  ], result: { first: 'stud-hs-2', second: 'stud-hs-1', third: 'stud-hs-3' } },
-  { id: 'prog-11', name: 'Arabic Speech (Senior)', category: 'High School', status: 'Ongoing', students: [
-    { id: 'stud-hs-4', name: 'Ishaaq Sulaiman', teamId: 'al-fath', classLevel: 'Class 9', registeredAt: '2026-07-18T12:15:00Z' },
-    { id: 'stud-hs-5', name: 'Yahya Ayyoob', teamId: 'al-noor', classLevel: 'Class 10', registeredAt: '2026-07-18T12:20:00Z' }
+  // LP Boys Class 3,4
+  { id: 'prog-6', name: 'Story Telling', category: 'LP Boys', status: 'Completed', students: [
+    { id: 'stud-lpb-1', name: 'Ammar Jamil', teamId: 'al-fath', classLevel: 'Class 3', registeredAt: '2026-07-18T10:30:00Z' },
+    { id: 'stud-lpb-2', name: 'Adil K', teamId: 'al-buraq', classLevel: 'Class 4', registeredAt: '2026-07-18T10:35:00Z' }
+  ], result: { first: 'stud-lpb-1', second: 'stud-lpb-2', third: '' } },
+  { id: 'prog-7', name: 'Madh Song', category: 'LP Boys', status: 'Ongoing', students: [
+    { id: 'stud-lpb-3', name: 'Muhammad Rayan', teamId: 'al-noor', classLevel: 'Class 4', registeredAt: '2026-07-18T10:40:00Z' }
   ], result: null },
-  { id: 'prog-12', name: 'English Speech (Senior)', category: 'High School', status: 'Pending', students: [], result: null },
-  { id: 'prog-13', name: 'Islamic Quiz (Senior)', category: 'High School', status: 'Pending', students: [], result: null },
-  { id: 'prog-14', name: 'Fiqh Moot Court (Seminar)', category: 'High School', status: 'Pending', students: [], result: null },
-  { id: 'prog-15', name: 'Arabic Translation & Syntax', category: 'High School', status: 'Pending', students: [], result: null }
+  { id: 'prog-8', name: 'Reading Arabi Malayalam', category: 'LP Boys', status: 'Pending', students: [], result: null },
+  { id: 'prog-9', name: 'Quiz', category: 'LP Boys', status: 'Pending', students: [], result: null },
+  { id: 'prog-10', name: 'Pencil Drawing', category: 'LP Boys', status: 'Pending', students: [], result: null },
+  { id: 'prog-11', name: 'Dictation Arabi & Malayalam', category: 'LP Boys', status: 'Pending', students: [], result: null },
+
+  // LP Girls
+  { id: 'prog-12', name: 'Reading Arabi Malayalam', category: 'LP Girls', status: 'Completed', students: [
+    { id: 'stud-lpg-1', name: 'Aisha Minha', teamId: 'al-noor', classLevel: 'Class 4', registeredAt: '2026-07-18T10:45:00Z' },
+    { id: 'stud-lpg-2', name: 'Fathima Nafees', teamId: 'al-fath', classLevel: 'Class 3', registeredAt: '2026-07-18T10:50:00Z' },
+    { id: 'stud-lpg-3', name: 'Zainab Aman', teamId: 'al-buraq', classLevel: 'Class 4', registeredAt: '2026-07-18T10:55:00Z' }
+  ], result: { first: 'stud-lpg-1', second: 'stud-lpg-3', third: 'stud-lpg-2' } },
+  { id: 'prog-13', name: 'Quiz', category: 'LP Girls', status: 'Pending', students: [], result: null },
+  { id: 'prog-14', name: 'Dictation Arabi & Malayalam', category: 'LP Girls', status: 'Pending', students: [], result: null },
+  { id: 'prog-15', name: 'Pencil Drawing', category: 'LP Girls', status: 'Pending', students: [], result: null },
+  { id: 'prog-16', name: 'Baloon Pottikkal', category: 'LP Girls', status: 'Pending', students: [], result: null },
+
+  // UP Boys Class 5,6,7
+  { id: 'prog-17', name: 'Speech Malayalam', category: 'UP Boys', status: 'Completed', students: [
+    { id: 'stud-upb-1', name: 'Bilal Ahmed', teamId: 'al-buraq', classLevel: 'Class 7', registeredAt: '2026-07-18T11:00:00Z' },
+    { id: 'stud-upb-2', name: 'Omar Farooq', teamId: 'al-noor', classLevel: 'Class 6', registeredAt: '2026-07-18T11:05:00Z' }
+  ], result: { first: 'stud-upb-1', second: 'stud-upb-2', third: '' } },
+  { id: 'prog-18', name: 'Madh Song', category: 'UP Boys', status: 'Ongoing', students: [], result: null },
+  { id: 'prog-19', name: 'Quiz', category: 'UP Boys', status: 'Pending', students: [], result: null },
+  { id: 'prog-20', name: 'Quran Recitation', category: 'UP Boys', status: 'Pending', students: [], result: null },
+  { id: 'prog-21', name: 'Azaan', category: 'UP Boys', status: 'Pending', students: [], result: null },
+  { id: 'prog-22', name: 'Handwriting Arabi Malayalam', category: 'UP Boys', status: 'Pending', students: [], result: null },
+
+  // UP Girls
+  { id: 'prog-23', name: 'Quiz', category: 'UP Girls', status: 'Pending', students: [], result: null },
+  { id: 'prog-24', name: 'Hifz', category: 'UP Girls', status: 'Completed', students: [
+    { id: 'stud-upg-1', name: 'Maryam Ansar', teamId: 'al-noor', classLevel: 'Class 7', registeredAt: '2026-07-18T11:10:00Z' },
+    { id: 'stud-upg-2', name: 'Khadija Nusrath', teamId: 'al-fath', classLevel: 'Class 6', registeredAt: '2026-07-18T11:15:00Z' },
+    { id: 'stud-upg-3', name: 'Safa Fathima', teamId: 'al-buraq', classLevel: 'Class 7', registeredAt: '2026-07-18T11:20:00Z' }
+  ], result: { first: 'stud-upg-1', second: 'stud-upg-2', third: 'stud-upg-3' } },
+  { id: 'prog-25', name: 'Handwriting Arabi Malayalam', category: 'UP Girls', status: 'Pending', students: [], result: null },
+  { id: 'prog-26', name: 'Story Writing', category: 'UP Girls', status: 'Pending', students: [], result: null },
+  { id: 'prog-27', name: 'Treasure Hunt', category: 'UP Girls', status: 'Pending', students: [], result: null },
+  { id: 'prog-28', name: 'Painting Watercolor', category: 'UP Girls', status: 'Pending', students: [], result: null },
+  { id: 'prog-29', name: 'Bottle Filling', category: 'UP Girls', status: 'Pending', students: [], result: null },
+
+  // HS Boys Class 8,9,10
+  { id: 'prog-30', name: 'Speech Malayalam', category: 'HS Boys', status: 'Ongoing', students: [
+    { id: 'stud-hsb-1', name: 'Rayan Farhan', teamId: 'al-buraq', classLevel: 'Class 9', registeredAt: '2026-07-18T12:00:00Z' }
+  ], result: null },
+  { id: 'prog-31', name: 'Mappilappat', category: 'HS Boys', status: 'Pending', students: [], result: null },
+  { id: 'prog-32', name: 'Madh Song', category: 'HS Boys', status: 'Pending', students: [], result: null },
+  { id: 'prog-33', name: 'Quiz', category: 'HS Boys', status: 'Pending', students: [], result: null },
+  { id: 'prog-34', name: 'Poster Designing', category: 'HS Boys', status: 'Pending', students: [], result: null },
+  { id: 'prog-35', name: 'Story Writing', category: 'HS Boys', status: 'Pending', students: [], result: null },
+  { id: 'prog-36', name: 'Poem Writing', category: 'HS Boys', status: 'Pending', students: [], result: null },
+  { id: 'prog-37', name: 'Penalty Shootout', category: 'HS Boys', status: 'Completed', students: [
+    { id: 'stud-hsb-2', name: 'Naufal Ali', teamId: 'al-noor', classLevel: 'Class 10', registeredAt: '2026-07-18T12:05:00Z' },
+    { id: 'stud-hsb-3', name: 'Suhail Muhammad', teamId: 'al-fath', classLevel: 'Class 10', registeredAt: '2026-07-18T12:10:00Z' }
+  ], result: { first: 'stud-hsb-2', second: 'stud-hsb-3', third: '' } },
+
+  // HS Girls
+  { id: 'prog-38', name: 'Quiz', category: 'HS Girls', status: 'Pending', students: [], result: null },
+  { id: 'prog-39', name: 'Poster Designing', category: 'HS Girls', status: 'Pending', students: [], result: null },
+  { id: 'prog-40', name: 'Story Writing', category: 'HS Girls', status: 'Pending', students: [], result: null },
+  { id: 'prog-41', name: 'Poem Writing', category: 'HS Girls', status: 'Pending', students: [], result: null },
+  { id: 'prog-42', name: 'Origami', category: 'HS Girls', status: 'Pending', students: [], result: null },
+  { id: 'prog-43', name: 'Malayalam Speech (Only Malayalam)', category: 'HS Girls', status: 'Pending', students: [], result: null },
+
+  // General Boys
+  { id: 'prog-44', name: 'Group Song', category: 'General Boys', status: 'Pending', students: [], result: null },
+  { id: 'prog-45', name: 'Mappilappat', category: 'General Boys', status: 'Pending', students: [], result: null },
+
+  // General Girls
+  { id: 'prog-46', name: 'Mappilappat', category: 'General Girls', status: 'Pending', students: [], result: null },
+  { id: 'prog-47', name: 'Mouleed', category: 'General Girls', status: 'Pending', students: [], result: null }
 ];
 
 const TEAMS = [
-  { id: 'al-noor', name: 'Sweet of Mahabba - Noor', color: '#9AAD59', bgClass: 'bg-[#9AAD59]', textClass: 'text-[#9AAD59]', borderClass: 'border-[#9AAD59]/40', icon: 'zap', hoverBg: 'hover:bg-[#9AAD59]/10' },
-  { id: 'al-fath', name: 'Sweet of Mahabba - Fath', color: '#7ea0b5', bgClass: 'bg-[#7ea0b5]', textClass: 'text-[#7ea0b5]', borderClass: 'border-[#7ea0b5]/40', icon: 'shield', hoverBg: 'hover:bg-[#7ea0b5]/10' },
-  { id: 'al-buraq', name: 'Sweet of Mahabba - Buraq', color: '#d4a574', bgClass: 'bg-[#d4a574]', textClass: 'text-[#d4a574]', borderClass: 'border-[#d4a574]/40', icon: 'award', hoverBg: 'hover:bg-[#d4a574]/10' }
+  { id: 'al-noor', name: 'Team Granada', color: '#c1121f', bgClass: 'bg-[#c1121f]', textClass: 'text-[#c1121f]', borderClass: 'border-[#c1121f]/40', icon: 'zap', hoverBg: 'hover:bg-[#c1121f]/10' },
+  { id: 'al-fath', name: 'Team Samarkand', color: '#00b4d8', bgClass: 'bg-[#00b4d8]', textClass: 'text-[#00b4d8]', borderClass: 'border-[#00b4d8]/40', icon: 'shield', hoverBg: 'hover:bg-[#00b4d8]/10' },
+  { id: 'al-buraq', name: 'Team Kairo', color: '#d4af37', bgClass: 'bg-[#d4af37]', textClass: 'text-[#d4af37]', borderClass: 'border-[#d4af37]/40', icon: 'award', hoverBg: 'hover:bg-[#d4af37]/10' }
 ];
 
 const DEFAULT_PHOTOS = [
-  { id: 'photo-1', title: 'Quran Recitation Contest', category: 'LP Division', description: 'Beautiful recitation of the Holy Quran, emphasizing rules of Tajweed and correct memorization.', url: 'https://images.unsplash.com/photo-1584281729088-348244a04478?q=80&w=600&auto=format&fit=crop', date: '2026-07-18T10:00:00Z' },
-  { id: 'photo-2', title: 'Islamic Songs Performance', category: 'LP Division', description: 'Melodious Nasheeds and praises sung by our LP and UP contestants, invoking deep spiritual love.', url: 'https://images.unsplash.com/photo-1516280440614-37939bbacd6a?q=80&w=600&auto=format&fit=crop', date: '2026-07-18T10:05:00Z' },
-  { id: 'photo-3', title: 'Lettering & Quranic Art', category: 'High School', description: 'Elegant scripts drawn by young artists from the LP and High School sections showcasing Islamic heritage.', url: 'https://images.unsplash.com/photo-1561214115-f2f134cc4912?q=80&w=600&auto=format&fit=crop', date: '2026-07-18T10:10:00Z' },
-  { id: 'photo-4', title: 'Divisional Quiz Finale', category: 'UP Division', description: 'A high-pressure academic showdown testing students on Quranic knowledge, Hadith, Fiqh, and history.', url: 'https://images.unsplash.com/photo-1518133680487-3bc4b5a49cd0?q=80&w=600&auto=format&fit=crop', date: '2026-07-18T10:15:00Z' },
-  { id: 'photo-5', title: 'Elocution and Oratory', category: 'High School', description: 'Inspiring presentations and speeches delivered by senior students demonstrating powerful oratory skills.', url: 'https://images.unsplash.com/photo-1524178232363-1fb2b075b655?q=80&w=600&auto=format&fit=crop', date: '2026-07-18T10:20:00Z' },
-  { id: 'photo-6', title: 'Islamic Seminar & Fiqh Moot', category: 'High School', description: 'Critical discussions and presentations on jurisprudence and classical Islamic texts by HS divisions.', url: 'https://images.unsplash.com/photo-1475721027785-f74eccf877e2?q=80&w=600&auto=format&fit=crop', date: '2026-07-18T10:25:00Z' }
+  { id: 'photo-1', title: 'Quran Recitation Contest', category: 'LP Boys', description: 'Beautiful recitation of the Holy Quran, emphasizing rules of Tajweed and correct memorization.', url: 'https://images.unsplash.com/photo-1584281729088-348244a04478?q=80&w=600&auto=format&fit=crop', date: '2026-07-18T10:00:00Z' },
+  { id: 'photo-2', title: 'Islamic Songs Performance', category: 'LP Girls', description: 'Melodious Nasheeds and praises sung by our LP and UP contestants, invoking deep spiritual love.', url: 'https://images.unsplash.com/photo-1516280440614-37939bbacd6a?q=80&w=600&auto=format&fit=crop', date: '2026-07-18T10:05:00Z' },
+  { id: 'photo-3', title: 'Lettering & Quranic Art', category: 'HS Girls', description: 'Elegant scripts drawn by young artists from the LP and High School sections showcasing Islamic heritage.', url: 'https://images.unsplash.com/photo-1561214115-f2f134cc4912?q=80&w=600&auto=format&fit=crop', date: '2026-07-18T10:10:00Z' },
+  { id: 'photo-4', title: 'Divisional Quiz Finale', category: 'UP Boys', description: 'A high-pressure academic showdown testing students on Quranic knowledge, Hadith, Fiqh, and history.', url: 'https://images.unsplash.com/photo-1518133680487-3bc4b5a49cd0?q=80&w=600&auto=format&fit=crop', date: '2026-07-18T10:15:00Z' },
+  { id: 'photo-5', title: 'Elocution and Oratory', category: 'HS Boys', description: 'Inspiring presentations and speeches delivered by senior students demonstrating powerful oratory skills.', url: 'https://images.unsplash.com/photo-1524178232363-1fb2b075b655?q=80&w=600&auto=format&fit=crop', date: '2026-07-18T10:20:00Z' },
+  { id: 'photo-6', title: 'Islamic Seminar & Fiqh Moot', category: 'HS Boys', description: 'Critical discussions and presentations on jurisprudence and classical Islamic texts by HS divisions.', url: 'https://images.unsplash.com/photo-1475721027785-f74eccf877e2?q=80&w=600&auto=format&fit=crop', date: '2026-07-18T10:25:00Z' }
 ];
 
 createApp({
@@ -174,8 +222,9 @@ createApp({
         const stored = localStorage.getItem('hasaniyya_programs');
         if (stored) {
           const parsed = JSON.parse(stored);
-          const isCompatible = parsed.every(p => p.id && p.name && p.category && ('status' in p) && ('result' in p));
-          if (!isCompatible) {
+          const isCompatible = Array.isArray(parsed) && parsed.every(p => p.id && p.name && p.category && ('status' in p) && ('result' in p));
+          const hasNewCategories = Array.isArray(parsed) && parsed.some(p => p.category === 'Kids' || p.category === 'LP Boys');
+          if (!isCompatible || !hasNewCategories) {
             programs.value = JSON.parse(JSON.stringify(DEFAULT_PROGRAMS));
             saveData();
           } else {
@@ -341,7 +390,7 @@ createApp({
 
     // Categories
     const categories = computed(() => {
-      const order = ['LP', 'UP', 'High School'];
+      const order = ['Kids', 'LP Boys', 'LP Girls', 'UP Boys', 'UP Girls', 'HS Boys', 'HS Girls', 'General Boys', 'General Girls'];
       const cats = new Set();
       programs.value.forEach(p => cats.add(p.category));
       return order.filter(c => cats.has(c));
