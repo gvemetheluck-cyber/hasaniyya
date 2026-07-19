@@ -4,20 +4,20 @@
   "description": "Arts & Literature Festival Portal - Madrasathul Hasaniyya, Adikkumpara.",
   "icons": [
     {
-      "src": "/icon.png",
+      "src": "icon.png",
       "type": "image/png",
       "sizes": "512x512",
       "purpose": "any maskable"
     },
     {
-      "src": "/icon.svg",
+      "src": "icon.svg",
       "sizes": "any",
       "type": "image/svg+xml",
       "purpose": "any maskable"
     }
   ],
   "start_url": ".",
-  "scope": "/",
+  "scope": "./",
   "display": "standalone",
   "theme_color": "#1b4332",
   "background_color": "#040d08",
@@ -26,13 +26,13 @@
       "name": "Live Results",
       "short_name": "Results",
       "description": "View live placings and scores",
-      "url": "/#results"
+      "url": "./#results"
     },
     {
       "name": "Schedule",
       "short_name": "Schedule",
       "description": "View the event schedule",
-      "url": "/#schedule"
+      "url": "./#schedule"
     }
   ]
 }
