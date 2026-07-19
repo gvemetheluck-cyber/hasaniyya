@@ -1,0 +1,38 @@
+{
+  "short_name": "Sweet Mahabba",
+  "name": "Sweet of Mahabba '26 - Hasaniyya",
+  "description": "Arts & Literature Festival Portal - Madrasathul Hasaniyya, Adikkumpara.",
+  "icons": [
+    {
+      "src": "/icon.png",
+      "type": "image/png",
+      "sizes": "512x512",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "/icon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any maskable"
+    }
+  ],
+  "start_url": ".",
+  "scope": "/",
+  "display": "standalone",
+  "theme_color": "#1b4332",
+  "background_color": "#040d08",
+  "shortcuts": [
+    {
+      "name": "Live Results",
+      "short_name": "Results",
+      "description": "View live placings and scores",
+      "url": "/#results"
+    },
+    {
+      "name": "Schedule",
+      "short_name": "Schedule",
+      "description": "View the event schedule",
+      "url": "/#schedule"
+    }
+  ]
+}

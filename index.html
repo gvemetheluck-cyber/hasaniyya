@@ -1,0 +1,1401 @@
+<!DOCTYPE html>
+<html lang="en" class="preload dark" style="scroll-behavior: smooth;">
+  <head>
+    <meta charset="utf-8" />
+    <link rel="icon" type="image/png" href="/icon.png" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover, maximum-scale=1.0, user-scalable=no" />
+    <title>Sweet of Mahabba '26 - Madrasathul Hasaniyya</title>
+    
+    <link rel="manifest" href="/manifest.json" />
+    <meta name="theme-color" content="#1b4332" />
+    <meta name="description" content="Sweet of Mahabba '26 Cultural Festival - Madrasathul Hasaniyya, Adikkumpara." />
+
+    <!-- Apple Web App Tags -->
+    <link rel="apple-touch-icon" href="/icon.png">
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+    <meta name="apple-mobile-web-app-title" content="Sweet of Mahabba" />
+
+    <!-- Theme Blocking Script -->
+    <script>
+      (function() {
+        try {
+          const savedTheme = localStorage.getItem('theme') || 'dark';
+          document.documentElement.classList.add(savedTheme);
+        } catch (e) {}
+      })();
+    </script>
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
+
+    <!-- Tailwind & Config -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+      tailwind.config = {
+        darkMode: 'class',
+        theme: {
+          extend: {
+            colors: {
+              brand: {
+                bg: '#040d08', // Dark forest charcoal background
+                surface: '#0a1a10', // Emerald charcoal card background
+                border: '#142d1e', // Dark green border
+                primary: '#1b4332', // Forest green
+                secondary: '#2d6a4f', // Deep emerald
+                accent: '#d4af37', // Gold Accent
+                'accent-hover': '#f3c623',
+                lightBg: '#f4f7f5',
+                lightSurface: '#ffffff',
+                lightBorder: '#e2e8f0',
+              },
+            },
+            fontFamily: {
+              sans: ['"Montserrat"', 'sans-serif'],
+              cinzel: ['"Montserrat"', 'sans-serif'],
+            },
+            boxShadow: {
+              'glass-dark': '0 8px 32px 0 rgba(0, 0, 0, 0.7)',
+              'glow-primary': '0 0 15px rgba(27, 67, 50, 0.4)',
+              'glow-accent': '0 0 18px rgba(212, 175, 55, 0.3)',
+            }
+          },
+        },
+      };
+    </script>
+    
+    <style type="text/css">
+      .preload, .preload * { transition: none !important; }
+      body {
+        -webkit-font-smoothing: antialiased;
+        font-family: 'Montserrat', sans-serif;
+      }
+      .glass-card-dark {
+        background: rgba(10, 26, 16, 0.85);
+        backdrop-filter: blur(14px);
+        -webkit-backdrop-filter: blur(14px);
+        border: 1px solid rgba(212, 175, 55, 0.08);
+      }
+      .glass-card-light {
+        background: rgba(255, 255, 255, 0.9);
+        backdrop-filter: blur(14px);
+        -webkit-backdrop-filter: blur(14px);
+        border: 1px solid rgba(27, 67, 50, 0.08);
+      }
+      .custom-scrollbar::-webkit-scrollbar { width: 5px; height: 5px; }
+      .custom-scrollbar::-webkit-scrollbar-track { background: transparent; }
+      .custom-scrollbar::-webkit-scrollbar-thumb { 
+        background: #142d1e; 
+        border-radius: 10px;
+      }
+      .gradient-title {
+        background: linear-gradient(135deg, #ffffff 0%, #d4af37 60%, #b89127 100%);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+      }
+      .gradient-title-light {
+        background: linear-gradient(135deg, #1b4332 0%, #a37b0d 60%, #1b4332 100%);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+      }
+      
+      /* Islamic Geometric Background styling */
+      .bg-islamic-pattern {
+        background-image: radial-gradient(rgba(212, 175, 55, 0.05) 1.5px, transparent 1.5px);
+        background-size: 24px 24px;
+      }
+      
+      @keyframes pulse-glow {
+        0%, 100% { opacity: 0.2; transform: scale(1); }
+        50% { opacity: 0.4; transform: scale(1.05); }
+      }
+      .pulse-glow-bg {
+        animation: pulse-glow 8s infinite ease-in-out;
+      }
+    </style>
+    
+    <!-- Vue 3 and Lucide Icons -->
+    <script src="https://unpkg.com/vue@3/dist/vue.global.prod.js"></script>
+    <script src="https://unpkg.com/lucide@latest"></script>
+  </head>
+  <body class="bg-brand-bg text-zinc-100 min-h-screen flex flex-col transition-colors duration-300 dark:bg-brand-bg dark:text-zinc-100 bg-brand-lightBg text-zinc-800">
+    <div id="root" v-cloak>
+      
+      <!-- Toast Notification -->
+      <transition enter-active-class="transform ease-out duration-300 transition" enter-from-class="translate-y-2 opacity-0 sm:translate-y-0 sm:translate-x-2" enter-to-class="translate-y-0 opacity-100 sm:translate-x-0" leave-active-class="transition ease-in duration-100" leave-from-class="opacity-100" leave-to-class="opacity-0">
+        <div v-if="showToast" class="fixed top-5 right-5 z-50 flex max-w-md w-full rounded-2xl shadow-xl pointer-events-auto overflow-hidden border bg-zinc-950/90 dark:bg-[#07130b] dark:border-brand-accent/25 bg-white border-brand-primary/20">
+          <div class="p-4 w-full">
+            <div class="flex items-start">
+              <div class="flex-shrink-0">
+                <i v-if="toastType === 'success'" data-lucide="check-circle" class="h-6 w-6 text-brand-accent"></i>
+                <i v-else-if="toastType === 'error'" data-lucide="alert-octagon" class="h-6 w-6 text-red-500"></i>
+                <i v-else data-lucide="info" class="h-6 w-6 text-blue-400"></i>
+              </div>
+              <div class="ml-3 flex-1 pt-0.5">
+                <p class="text-sm font-bold text-brand-accent font-sans dark:text-brand-accent text-brand-primary">
+                  {{ toastType === 'success' ? 'Success' : toastType === 'error' ? 'Error' : 'Notification' }}
+                </p>
+                <p class="mt-1 text-xs text-zinc-300 dark:text-zinc-300 text-zinc-600 font-sans">{{ toastMessage }}</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </transition>
+
+      <!-- NAVIGATION HEADER -->
+      <header class="sticky top-0 z-40 w-full backdrop-blur-md border-b dark:bg-brand-bg/85 dark:border-brand-border bg-brand-lightSurface/85 border-brand-lightBorder transition-all shadow-sm">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-3.5 flex items-center justify-between">
+          <div class="flex items-center gap-3 cursor-pointer" @click="setView('home')">
+            <div class="p-2 bg-gradient-to-br from-brand-accent to-brand-primary border border-brand-accent/20 text-brand-bg dark:text-brand-bg text-white rounded-xl shadow-glow-accent">
+              <i data-lucide="book-open" class="w-5.5 h-5.5 text-zinc-950 font-bold"></i>
+            </div>
+            <div>
+              <h1 class="text-lg sm:text-xl font-black font-cinzel tracking-wider leading-none dark:text-zinc-100 text-brand-primary">
+                MADRASATHUL HASANIYYA
+              </h1>
+              <p class="text-[9px] font-bold tracking-widest uppercase text-brand-accent dark:text-brand-accent text-brand-secondary">
+                Aadikkumpara • Cultural Fest
+              </p>
+            </div>
+          </div>
+
+          <!-- Desktop Nav Links -->
+          <nav class="hidden md:flex items-center gap-1.5">
+            <button @click="setView('home')" class="px-3.5 py-2 rounded-xl text-xs font-bold tracking-wider uppercase transition-all" :class="currentView === 'home' ? 'text-brand-accent bg-brand-primary/20' : 'text-zinc-400 dark:text-zinc-400 dark:hover:text-white text-zinc-600 hover:text-brand-primary'">
+              Home
+            </button>
+            <button @click="setView('results')" class="px-3.5 py-2 rounded-xl text-xs font-bold tracking-wider uppercase transition-all" :class="currentView === 'results' ? 'text-brand-accent bg-brand-primary/20' : 'text-zinc-400 dark:text-zinc-400 dark:hover:text-white text-zinc-600 hover:text-brand-primary'">
+              Results
+            </button>
+            <button @click="setView('schedule')" class="px-3.5 py-2 rounded-xl text-xs font-bold tracking-wider uppercase transition-all" :class="currentView === 'schedule' ? 'text-brand-accent bg-brand-primary/20' : 'text-zinc-400 dark:text-zinc-400 dark:hover:text-white text-zinc-600 hover:text-brand-primary'">
+              Schedule
+            </button>
+            <button @click="setView('gallery')" class="px-3.5 py-2 rounded-xl text-xs font-bold tracking-wider uppercase transition-all" :class="currentView === 'gallery' ? 'text-brand-accent bg-brand-primary/20' : 'text-zinc-400 dark:text-zinc-400 dark:hover:text-white text-zinc-600 hover:text-brand-primary'">
+              Gallery
+            </button>
+          </nav>
+
+          <!-- Action controls -->
+          <div class="flex items-center gap-2">
+            <!-- Theme Toggle -->
+            <button @click="toggleTheme" class="p-2 rounded-xl text-zinc-400 hover:text-brand-accent hover:bg-brand-primary/10 transition-all">
+              <i v-if="isDark" data-lucide="sun" class="w-4.5 h-4.5"></i>
+              <i v-else data-lucide="moon" class="w-4.5 h-4.5"></i>
+            </button>
+
+            <!-- Console Switch Button -->
+            <button v-if="!isAuthenticated" @click="showResultsModal = false; showAddStudentModal = false; showParticipantsModal = false; loginError = ''; loginEmail = ''; loginPassword = ''; currentView = 'login'" class="py-2 px-3.5 bg-brand-primary border border-brand-accent/25 hover:bg-brand-secondary text-brand-accent text-xs font-bold rounded-xl shadow-glow-primary transition-all flex items-center gap-1.5 font-sans active:scale-95">
+              <i data-lucide="lock" class="w-3.5 h-3.5"></i>
+              <span>Console</span>
+            </button>
+            <button v-else @click="setView('manager')" class="py-2 px-3.5 bg-brand-accent hover:bg-brand-accent-hover text-zinc-950 text-xs font-extrabold rounded-xl shadow-glow-accent transition-all flex items-center gap-1.5 font-sans active:scale-95">
+              <i data-lucide="layout-dashboard" class="w-3.5 h-3.5"></i>
+              <span>Dashboard</span>
+            </button>
+          </div>
+        </div>
+
+        <!-- Mobile Nav Bar bottom strip -->
+        <div class="md:hidden flex items-center justify-around border-t dark:border-brand-border/40 border-brand-lightBorder/40 bg-zinc-950/20 py-2.5">
+          <button @click="setView('home')" class="flex flex-col items-center gap-1 text-[9px] font-bold uppercase transition-all" :class="currentView === 'home' ? 'text-brand-accent' : 'text-zinc-500 dark:text-zinc-500 text-zinc-550'">
+            <i data-lucide="home" class="w-4 h-4"></i>
+            <span>Home</span>
+          </button>
+          <button @click="setView('results')" class="flex flex-col items-center gap-1 text-[9px] font-bold uppercase transition-all" :class="currentView === 'results' ? 'text-brand-accent' : 'text-zinc-500 dark:text-zinc-500 text-zinc-550'">
+            <i data-lucide="trophy" class="w-4 h-4"></i>
+            <span>Results</span>
+          </button>
+          <button @click="setView('schedule')" class="flex flex-col items-center gap-1 text-[9px] font-bold uppercase transition-all" :class="currentView === 'schedule' ? 'text-brand-accent' : 'text-zinc-500 dark:text-zinc-500 text-zinc-550'">
+            <i data-lucide="calendar" class="w-4 h-4"></i>
+            <span>Schedule</span>
+          </button>
+          <button @click="setView('gallery')" class="flex flex-col items-center gap-1 text-[9px] font-bold uppercase transition-all" :class="currentView === 'gallery' ? 'text-brand-accent' : 'text-zinc-500 dark:text-zinc-500 text-zinc-550'">
+            <i data-lucide="image" class="w-4 h-4"></i>
+            <span>Gallery</span>
+          </button>
+        </div>
+      </header>
+
+      <!-- MAIN WRAPPER -->
+      <main class="flex-grow">
+
+        <!-- 1. LANDING/HOME VIEW -->
+        <div v-if="currentView === 'home'" class="space-y-12 pb-16">
+          
+          <!-- Hero Section -->
+          <section class="relative min-h-[50vh] sm:min-h-[55vh] flex items-center justify-center text-center px-4 overflow-hidden border-b dark:border-brand-border/40 border-brand-lightBorder/40 bg-islamic-pattern dark:bg-zinc-950 bg-slate-100">
+            <!-- Glow elements -->
+            <div class="absolute w-[40rem] h-[40rem] rounded-full bg-brand-primary/10 dark:bg-brand-primary/10 bg-brand-primary/5 blur-[120px] pointer-events-none pulse-glow-bg top-[-200px]"></div>
+            <div class="absolute w-[30rem] h-[30rem] rounded-full bg-brand-accent/5 dark:bg-brand-accent/5 bg-brand-accent/3 blur-[100px] pointer-events-none pulse-glow-bg bottom-[-150px]"></div>
+
+            <div class="relative z-10 max-w-4xl mx-auto py-8">
+              <!-- Decorative Top Emblem -->
+              <div class="inline-flex items-center justify-center mb-6">
+                <div class="w-12 h-[1px] bg-gradient-to-r from-transparent to-brand-accent"></div>
+                <div class="mx-3 text-brand-accent text-sm tracking-widest font-serif">﷽</div>
+                <div class="w-12 h-[1px] bg-gradient-to-l from-transparent to-brand-accent"></div>
+              </div>
+
+              <!-- Main Title -->
+              <h1 class="text-4xl sm:text-6xl md:text-7xl font-extrabold font-cinzel tracking-wider leading-none mb-4 dark:text-zinc-100 text-brand-primary">
+                SWEET OF MAHABBA
+              </h1>
+              <p class="text-xs sm:text-sm font-semibold tracking-widest text-brand-accent uppercase mb-6 max-w-2xl mx-auto">
+                Arts & Literature Sahityotsav Festival '26
+              </p>
+
+              <!-- Description -->
+              <p class="text-sm md:text-base font-medium max-w-xl mx-auto leading-relaxed dark:text-zinc-300 text-zinc-600 mb-8 font-sans">
+                Organized and conducted by <span class="text-brand-accent dark:text-brand-accent text-brand-secondary font-bold">Madrasathul Hasaniyya</span>.
+                Showcasing the vibrant literary, artistic, and Islamic talents of Adikkumpara.
+              </p>
+
+              <!-- Live Counter & Highlights -->
+              <div class="grid grid-cols-4 gap-2 sm:gap-4 max-w-lg mx-auto bg-zinc-900/40 dark:bg-brand-surface/40 bg-white/75 backdrop-blur-md p-4 rounded-2xl border dark:border-brand-border/40 border-brand-lightBorder shadow-glass-dark">
+                <div class="text-center">
+                  <span class="text-xl sm:text-2xl font-black font-cinzel text-brand-accent block leading-none">15</span>
+                  <span class="text-[9px] font-bold text-zinc-400 dark:text-zinc-400 text-zinc-550 uppercase tracking-widest block mt-1">Total Items</span>
+                </div>
+                <div class="text-center border-l dark:border-brand-border/60 border-brand-lightBorder">
+                  <span class="text-xl sm:text-2xl font-black font-cinzel text-brand-accent block leading-none">{{ stats.totalRegistrations }}</span>
+                  <span class="text-[9px] font-bold text-zinc-400 dark:text-zinc-400 text-zinc-550 uppercase tracking-widest block mt-1">Contestants</span>
+                </div>
+                <div class="text-center border-l dark:border-brand-border/60 border-brand-lightBorder">
+                  <span class="text-xl sm:text-2xl font-black font-cinzel text-brand-accent block leading-none">{{ stats.totalCompleted }}</span>
+                  <span class="text-[9px] font-bold text-zinc-400 dark:text-zinc-400 text-zinc-550 uppercase tracking-widest block mt-1">Completed</span>
+                </div>
+                <div class="text-center border-l dark:border-brand-border/60 border-brand-lightBorder">
+                  <span class="text-xl sm:text-2xl font-black font-cinzel text-brand-accent block leading-none">3</span>
+                  <span class="text-[9px] font-bold text-zinc-400 dark:text-zinc-400 text-zinc-550 uppercase tracking-widest block mt-1">Houses</span>
+                </div>
+              </div>
+            </div>
+          </section>
+
+          <!-- Leaderboard / House Standings -->
+          <section class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-10">
+              <span class="text-[9px] font-black text-zinc-950 bg-brand-accent px-3 py-1 rounded-full uppercase tracking-widest">
+                House Leaderboard
+              </span>
+              <h2 class="text-2xl sm:text-3xl font-black font-cinzel tracking-wider mt-2.5 dark:text-zinc-100 text-brand-primary">
+                LIVE HOUSE STANDINGS
+              </h2>
+              <p class="text-xs italic text-zinc-450 dark:text-zinc-400 text-zinc-650 mt-1.5 max-w-md mx-auto">
+                Scores dynamically computed: 1 point per student registration + placing points (1st: 10pts, 2nd: 5pts, 3rd: 3pts)
+              </p>
+            </div>
+
+            <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
+              <div v-for="(team, index) in stats.sortedTeams" :key="team.id" class="relative rounded-3xl p-6 border transition-all duration-300 hover:scale-[1.01] hover:shadow-lg" :class="[isDark ? 'glass-card-dark' : 'glass-card-light', currentView === 'home' ? 'border-brand-border/50' : '']">
+                <!-- Golden Rank Badge -->
+                <div class="absolute -top-3.5 -right-3.5 w-10 h-10 rounded-full flex items-center justify-center text-xs font-black shadow-md border" :class="index === 0 ? 'bg-gradient-to-br from-yellow-300 via-yellow-500 to-yellow-600 border-yellow-400 text-zinc-950' : index === 1 ? 'bg-slate-300 border-slate-200 text-zinc-800' : 'bg-amber-600 border-amber-500 text-amber-100'">
+                  #{{ index + 1 }}
+                </div>
+
+                <div class="flex items-start gap-4 mb-6">
+                  <!-- Team Icon Container -->
+                  <div class="p-3.5 text-zinc-950 rounded-2xl" :class="team.bgClass">
+                    <i :data-lucide="team.icon" class="w-6 h-6 text-zinc-950"></i>
+                  </div>
+                  <div>
+                    <h3 class="font-extrabold text-sm sm:text-base font-cinzel leading-snug dark:text-white text-brand-primary">
+                      {{ team.name.split('- ')[1] }} House
+                    </h3>
+                    <p class="text-[10px] text-zinc-400 dark:text-zinc-400 text-zinc-550 uppercase tracking-widest font-sans mt-0.5">
+                      {{ team.participationCount }} entries logged
+                    </p>
+                  </div>
+                </div>
+
+                <!-- Point Breakdown -->
+                <div class="space-y-3.5 pt-4 border-t dark:border-brand-border/60 border-brand-lightBorder/60">
+                  <div class="flex justify-between items-center text-xs text-zinc-450 dark:text-zinc-400 text-zinc-550">
+                    <span>Participation Points</span>
+                    <span class="font-bold font-sans text-zinc-300 dark:text-zinc-300 text-zinc-700">{{ team.participationCount }} pts</span>
+                  </div>
+                  <div class="flex justify-between items-center text-xs text-zinc-450 dark:text-zinc-400 text-zinc-550">
+                    <span>Placement Points</span>
+                    <span class="font-bold font-sans text-zinc-300 dark:text-zinc-300 text-zinc-700">+{{ team.placePoints }} pts</span>
+                  </div>
+                  <div class="flex justify-between items-end text-xs font-semibold pt-1">
+                    <span class="text-zinc-400 dark:text-zinc-400 text-zinc-650 font-cinzel uppercase tracking-wider text-[10px]">TOTAL SCORE</span>
+                    <span class="text-xl sm:text-2xl font-black font-sans text-brand-accent dark:text-brand-accent text-brand-primary leading-none">{{ team.points }} pts</span>
+                  </div>
+                  
+                  <!-- Progress Bar -->
+                  <div class="w-full bg-zinc-800/50 dark:bg-zinc-900/60 bg-slate-200 h-2.5 rounded-full overflow-hidden">
+                    <div class="h-full rounded-full transition-all duration-700 ease-out" :class="team.bgClass" :style="{ width: Math.max(5, Math.min(100, (team.points / (stats.sortedTeams[0].points || 1)) * 100)) + '%' }"></div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </section>
+
+          <!-- Announcements / Running text ticker -->
+          <section class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="bg-zinc-900/60 dark:bg-brand-surface/60 bg-white rounded-2xl border dark:border-brand-border/60 border-brand-lightBorder p-3 flex items-center overflow-hidden gap-3 shadow-sm">
+              <span class="py-1 px-2.5 bg-brand-primary text-brand-accent text-[9px] font-black uppercase tracking-wider rounded shrink-0 flex items-center gap-1 font-sans">
+                <span class="w-1.5 h-1.5 rounded-full bg-red-500 animate-pulse shrink-0"></span>
+                <span>Live Ticker</span>
+              </span>
+              <marquee class="text-xs text-zinc-300 dark:text-zinc-300 text-zinc-600 font-sans tracking-wide leading-none" scrollamount="4">
+                🔔 Sweet of Mahabba '26 is ongoing! • Total {{ stats.totalRegistrations }} students have registered across LP, UP, and HS divisions. • Keep checking the "Results" tab for the latest published winners! • Contact Madrasathul Hasaniyya committee at Adikkumpara for schedule queries.
+              </marquee>
+            </div>
+          </section>
+
+          <!-- Highlight/About Section -->
+          <section class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4">
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
+              <div class="space-y-4">
+                <h3 class="text-xl sm:text-2xl font-black font-cinzel text-zinc-100 dark:text-zinc-100 text-brand-primary">
+                  NURTURING FAITH & TALENTS
+                </h3>
+                <p class="text-sm leading-relaxed text-zinc-400 dark:text-zinc-400 text-zinc-650">
+                  Madrasathul Hasaniyya, located in the peaceful neighborhood of Adikkumpara, has been a pillar of educational and moral excellence. The <strong>"Sweet of Mahabba"</strong> festival is an annual literary and cultural meet designed to foster creative skills, intellectual growth, and team spirit among our students.
+                </p>
+                <div class="grid grid-cols-2 gap-4 pt-2">
+                  <div class="p-3 bg-brand-primary/10 rounded-2xl border border-brand-primary/20 flex items-center gap-2.5">
+                    <i data-lucide="shield-check" class="w-5 h-5 text-brand-accent"></i>
+                    <span class="text-xs font-bold text-zinc-300 dark:text-zinc-300 text-zinc-700">Healthy Contests</span>
+                  </div>
+                  <div class="p-3 bg-brand-primary/10 rounded-2xl border border-brand-primary/20 flex items-center gap-2.5">
+                    <i data-lucide="star" class="w-5 h-5 text-brand-accent"></i>
+                    <span class="text-xs font-bold text-zinc-300 dark:text-zinc-300 text-zinc-700">Moral Focus</span>
+                  </div>
+                </div>
+              </div>
+              <div class="relative rounded-3xl overflow-hidden shadow-glass-dark border border-brand-border h-64 bg-zinc-950 flex items-center justify-center p-6 text-center bg-islamic-pattern">
+                <div class="absolute inset-0 bg-gradient-to-t from-brand-bg to-transparent"></div>
+                <div class="z-10 space-y-2">
+                  <i data-lucide="quote" class="w-8 h-8 text-brand-accent/40 mx-auto"></i>
+                  <p class="text-base font-cinzel italic text-brand-accent">"Mahabba is the sweetness of faith."</p>
+                  <p class="text-[10px] text-zinc-450 dark:text-zinc-400 text-zinc-650 font-sans tracking-widest uppercase">Madrasathul Hasaniyya Adikkumpara</p>
+                </div>
+              </div>
+            </div>
+          </section>
+
+        </div>
+
+        <!-- 2. PUBLIC RESULTS VIEW -->
+        <div v-if="currentView === 'results'" class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10 space-y-8">
+          
+          <div class="flex flex-col md:flex-row md:items-center justify-between gap-4">
+            <div>
+              <span class="text-[9px] font-black text-zinc-950 bg-brand-accent px-3 py-1 rounded-full uppercase tracking-widest">
+                Competitions
+              </span>
+              <h2 class="text-2xl sm:text-3xl font-black font-cinzel tracking-wider mt-2.5 dark:text-zinc-100 text-brand-primary">
+                PUBLISHED RESULTS
+              </h2>
+            </div>
+            
+            <!-- Search bar -->
+            <div class="relative w-full md:w-80">
+              <div class="absolute inset-y-0 left-0 pl-3.5 flex items-center pointer-events-none">
+                <i data-lucide="search" class="h-4 w-4 text-zinc-400"></i>
+              </div>
+              <input type="text" v-model="searchFilter" placeholder="Search program or winner..." class="block w-full pl-10 pr-10 py-2.5 bg-zinc-900/40 dark:bg-brand-surface/40 dark:border-brand-border/80 bg-white border-zinc-300 rounded-2xl focus:outline-none focus:ring-1 focus:ring-brand-accent/40 text-xs transition-all font-sans" />
+              <button v-if="searchFilter" @click="searchFilter = ''" class="absolute inset-y-0 right-0 pr-3 flex items-center text-zinc-400 hover:text-zinc-200">
+                <i data-lucide="x" class="w-4 h-4"></i>
+              </button>
+            </div>
+          </div>
+
+          <!-- Results Grid list -->
+          <div v-if="filteredCompletedPrograms.length === 0" class="text-center py-20 border border-dashed dark:border-brand-border/60 border-brand-lightBorder rounded-3xl flex flex-col items-center justify-center bg-zinc-900/10">
+            <div class="p-4 bg-brand-primary/10 rounded-full text-brand-accent mb-4">
+              <i data-lucide="award" class="w-8 h-8"></i>
+            </div>
+            <h3 class="font-bold text-sm font-cinzel text-zinc-300 dark:text-zinc-300 text-zinc-700">No results found</h3>
+            <p class="text-xs text-zinc-500 font-sans mt-1 max-w-xs leading-relaxed italic">
+              Either search filters didn't match, or the manager has not published results for any program yet. Check back later!
+            </p>
+          </div>
+
+          <div v-else class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            <div v-for="prog in filteredCompletedPrograms" :key="prog.id" class="rounded-3xl p-5 border flex flex-col justify-between gap-4 transition-all duration-300 hover:shadow-lg" :class="isDark ? 'glass-card-dark' : 'glass-card-light'">
+              <!-- Program info header -->
+              <div class="flex items-start justify-between gap-3 border-b dark:border-brand-border/60 border-slate-100 pb-3">
+                <div>
+                  <h4 class="font-black text-sm font-cinzel text-zinc-100 dark:text-zinc-100 text-brand-primary leading-tight">
+                    {{ prog.name }}
+                  </h4>
+                  <span class="inline-block text-[9px] font-bold text-brand-accent uppercase tracking-widest mt-1">
+                    {{ prog.category }} Division
+                  </span>
+                </div>
+                <span class="text-[9px] font-bold text-zinc-450 bg-zinc-900/30 border border-brand-border/30 px-2 py-0.5 rounded shrink-0 font-sans">
+                  #{{ prog.id.split('-')[1] }}
+                </span>
+              </div>
+
+              <!-- Podium Placements -->
+              <div class="space-y-2">
+                <!-- 1st Place -->
+                <div class="flex items-center justify-between p-2.5 rounded-xl bg-brand-accent/10 border border-brand-accent/20">
+                  <div class="flex items-center gap-2">
+                    <div class="w-6 h-6 rounded-lg bg-brand-accent text-zinc-950 text-[10px] font-black flex items-center justify-center shrink-0">
+                      1st
+                    </div>
+                    <div>
+                      <span class="text-xs font-bold text-zinc-200 dark:text-zinc-100 text-zinc-800 leading-tight block">
+                        {{ getStudentName(prog, prog.result.first) }}
+                      </span>
+                      <span class="text-[8px] font-semibold text-zinc-400 dark:text-zinc-400 text-zinc-550 leading-none">
+                        Class {{ getStudentClass(prog, prog.result.first) }}
+                      </span>
+                    </div>
+                  </div>
+                  <!-- House badge -->
+                  <span class="text-[9px] font-black px-2 py-0.5 rounded uppercase tracking-wider border font-sans" :class="[getTeamInfo(getStudentTeamId(prog, prog.result.first)).textClass, getTeamInfo(getStudentTeamId(prog, prog.result.first)).borderClass, 'bg-zinc-950/20']">
+                    {{ getTeamInfo(getStudentTeamId(prog, prog.result.first)).name.split('- ')[1] }}
+                  </span>
+                </div>
+
+                <!-- 2nd Place -->
+                <div v-if="prog.result.second" class="flex items-center justify-between p-2.5 rounded-xl bg-zinc-800/40 dark:bg-zinc-900/30 bg-slate-50 border dark:border-zinc-800/40 border-slate-100">
+                  <div class="flex items-center gap-2">
+                    <div class="w-6 h-6 rounded-lg bg-zinc-500 text-zinc-100 text-[10px] font-black flex items-center justify-center shrink-0">
+                      2nd
+                    </div>
+                    <div>
+                      <span class="text-xs font-bold text-zinc-300 dark:text-zinc-200 text-zinc-700 leading-tight block">
+                        {{ getStudentName(prog, prog.result.second) }}
+                      </span>
+                      <span class="text-[8px] font-semibold text-zinc-450 dark:text-zinc-450 text-zinc-500 leading-none">
+                        Class {{ getStudentClass(prog, prog.result.second) }}
+                      </span>
+                    </div>
+                  </div>
+                  <!-- House badge -->
+                  <span class="text-[9px] font-black px-2 py-0.5 rounded uppercase tracking-wider border font-sans" :class="[getTeamInfo(getStudentTeamId(prog, prog.result.second)).textClass, getTeamInfo(getStudentTeamId(prog, prog.result.second)).borderClass, 'bg-zinc-950/20']">
+                    {{ getTeamInfo(getStudentTeamId(prog, prog.result.second)).name.split('- ')[1] }}
+                  </span>
+                </div>
+
+                <!-- 3rd Place -->
+                <div v-if="prog.result.third" class="flex items-center justify-between p-2.5 rounded-xl bg-zinc-800/20 dark:bg-zinc-900/10 bg-slate-50 border dark:border-zinc-850/30 border-slate-100">
+                  <div class="flex items-center gap-2">
+                    <div class="w-6 h-6 rounded-lg bg-amber-700 text-amber-100 text-[10px] font-black flex items-center justify-center shrink-0">
+                      3rd
+                    </div>
+                    <div>
+                      <span class="text-xs font-bold text-zinc-300 dark:text-zinc-205 text-zinc-700 leading-tight block">
+                        {{ getStudentName(prog, prog.result.third) }}
+                      </span>
+                      <span class="text-[8px] font-semibold text-zinc-450 dark:text-zinc-450 text-zinc-500 leading-none">
+                        Class {{ getStudentClass(prog, prog.result.third) }}
+                      </span>
+                    </div>
+                  </div>
+                  <!-- House badge -->
+                  <span class="text-[9px] font-black px-2 py-0.5 rounded uppercase tracking-wider border font-sans" :class="[getTeamInfo(getStudentTeamId(prog, prog.result.third)).textClass, getTeamInfo(getStudentTeamId(prog, prog.result.third)).borderClass, 'bg-zinc-950/20']">
+                    {{ getTeamInfo(getStudentTeamId(prog, prog.result.third)).name.split('- ')[1] }}
+                  </span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+        </div>
+
+        <!-- 3. PUBLIC SCHEDULE VIEW -->
+        <div v-if="currentView === 'schedule'" class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10 space-y-8">
+          
+          <div class="flex flex-col md:flex-row md:items-center justify-between gap-4">
+            <div>
+              <span class="text-[9px] font-black text-zinc-950 bg-brand-accent px-3 py-1 rounded-full uppercase tracking-widest">
+                Scheduling
+              </span>
+              <h2 class="text-2xl sm:text-3xl font-black font-cinzel tracking-wider mt-2.5 dark:text-zinc-100 text-brand-primary">
+                PROGRAMS DIRECTORY
+              </h2>
+            </div>
+            
+            <!-- Search bar -->
+            <div class="relative w-full md:w-80">
+              <div class="absolute inset-y-0 left-0 pl-3.5 flex items-center pointer-events-none">
+                <i data-lucide="search" class="h-4 w-4 text-zinc-400"></i>
+              </div>
+              <input type="text" v-model="searchFilter" placeholder="Search item, candidate..." class="block w-full pl-10 pr-10 py-2.5 bg-zinc-900/40 dark:bg-brand-surface/40 dark:border-brand-border/80 bg-white border-zinc-300 rounded-2xl focus:outline-none focus:ring-1 focus:ring-brand-accent/40 text-xs transition-all font-sans" />
+              <button v-if="searchFilter" @click="searchFilter = ''" class="absolute inset-y-0 right-0 pr-3 flex items-center text-zinc-400 hover:text-zinc-200">
+                <i data-lucide="x" class="w-4 h-4"></i>
+              </button>
+            </div>
+          </div>
+
+          <!-- Categories/Divisions Accordions -->
+          <div class="space-y-8">
+            <div v-for="category in categories" :key="category" class="rounded-3xl border overflow-hidden shadow-sm" :class="isDark ? 'glass-card-dark' : 'glass-card-light'">
+              <div class="px-6 py-4 bg-zinc-900/20 dark:bg-zinc-900/10 bg-slate-100 border-b dark:border-brand-border/40 border-slate-200 flex sm:items-center justify-between gap-3">
+                <div class="flex items-center">
+                  <div class="w-1 h-6 bg-brand-accent rounded-full mr-3 shadow-glow-accent"></div>
+                  <div>
+                    <h3 class="font-extrabold text-base sm:text-lg font-cinzel dark:text-zinc-100 text-brand-primary leading-tight">
+                      {{ category }} Division
+                    </h3>
+                    <p class="text-[9px] uppercase tracking-widest text-zinc-400 dark:text-zinc-400 text-zinc-550 mt-0.5">
+                      Madrasathul Hasaniyya Aadikkum Para
+                    </p>
+                  </div>
+                </div>
+                <span class="text-xs font-semibold italic text-brand-accent bg-brand-primary/10 border border-brand-accent/15 px-3 py-1.5 rounded-xl shrink-0">
+                  {{ filteredProgramsByCategory(category).length }} Events
+                </span>
+              </div>
+
+              <!-- Programs Grid -->
+              <div class="p-6">
+                <div v-if="filteredProgramsByCategory(category).length === 0" class="text-center py-10 text-zinc-450 italic font-sans text-xs">
+                  No programs match the search filter.
+                </div>
+
+                <div v-else class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
+                  <div v-for="prog in filteredProgramsByCategory(category)" :key="prog.id" class="p-5 rounded-2xl border flex flex-col justify-between gap-4 group" :class="isDark ? 'bg-brand-surface/40 border-brand-border/60 hover:border-brand-accent/30' : 'bg-slate-50/50 border-slate-200 hover:border-brand-secondary/35'">
+                    
+                    <div>
+                      <div class="flex items-start justify-between gap-3 mb-2.5">
+                        <h4 class="font-bold font-cinzel text-xs sm:text-sm text-zinc-100 dark:text-zinc-100 text-brand-primary group-hover:text-brand-accent transition-colors leading-tight">
+                          {{ prog.name }}
+                        </h4>
+                        <span class="text-[8px] font-bold text-zinc-450 bg-zinc-900/30 border border-brand-border/20 px-1.5 py-0.5 rounded font-sans uppercase">
+                          ID: {{ prog.id.split('-')[1] }}
+                        </span>
+                      </div>
+
+                      <div class="flex items-center gap-1.5 text-xs text-zinc-400 dark:text-zinc-400 text-zinc-550 mt-2 font-sans">
+                        <i data-lucide="users" class="w-3.5 h-3.5 text-zinc-500"></i>
+                        <span>{{ prog.students.length }} registered participants</span>
+                      </div>
+
+                      <!-- Display registered houses small dots -->
+                      <div v-if="prog.students.length > 0" class="flex flex-wrap gap-1 mt-2.5">
+                        <template v-for="team in TEAMS" :key="team.id">
+                          <span v-if="prog.students.filter(s => s.teamId === team.id).length > 0" class="inline-flex items-center gap-1 px-2 py-0.5 rounded text-[8px] font-bold border font-sans" :class="[team.textClass, team.borderClass, 'bg-zinc-950/30']">
+                            <span class="w-1.5 h-1.5 rounded-full" :class="team.bgClass"></span>
+                            {{ team.name.split('- ')[1] }}: {{ prog.students.filter(s => s.teamId === team.id).length }}
+                          </span>
+                        </template>
+                      </div>
+                    </div>
+
+                    <!-- Program Status Strip -->
+                    <div class="flex items-center justify-between pt-3.5 border-t dark:border-brand-border/40 border-slate-200/60 mt-2">
+                      <span class="text-[9px] font-bold text-zinc-450 dark:text-zinc-400 text-zinc-550 uppercase tracking-widest">
+                        Event Status:
+                      </span>
+                      
+                      <!-- Completed badge -->
+                      <span v-if="prog.status === 'Completed'" class="py-1 px-2.5 bg-brand-primary/20 text-brand-accent text-[9px] font-extrabold uppercase rounded-lg border border-brand-accent/20 flex items-center gap-1.5 font-sans">
+                        <i data-lucide="check" class="w-3 h-3 text-brand-accent"></i>
+                        <span>Completed</span>
+                      </span>
+                      <!-- Ongoing/Live badge -->
+                      <span v-else-if="prog.status === 'Ongoing'" class="py-1 px-2.5 bg-red-500/10 text-red-500 text-[9px] font-extrabold uppercase rounded-lg border border-red-500/30 flex items-center gap-1.5 font-sans animate-pulse">
+                        <span class="w-1.5 h-1.5 rounded-full bg-red-500 shrink-0"></span>
+                        <span>Live Now</span>
+                      </span>
+                      <!-- Pending badge -->
+                      <span v-else class="py-1 px-2.5 bg-amber-500/5 text-amber-500 text-[9px] font-extrabold uppercase rounded-lg border border-amber-500/20 flex items-center gap-1.5 font-sans">
+                        <i data-lucide="clock" class="w-3 h-3 text-amber-500"></i>
+                        <span>Scheduled</span>
+                      </span>
+                    </div>
+
+                  </div>
+                </div>
+              </div>
+
+            </div>
+          </div>
+
+        </div>
+
+        <!-- 4. PUBLIC GALLERY VIEW -->
+        <div v-if="currentView === 'gallery'" class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10 space-y-8">
+          
+          <div class="text-center mb-10">
+            <span class="text-[9px] font-black text-zinc-950 bg-brand-accent px-3 py-1 rounded-full uppercase tracking-widest">
+              Visuals
+            </span>
+            <h2 class="text-2xl sm:text-3xl font-black font-cinzel tracking-wider mt-2.5 dark:text-zinc-100 text-brand-primary">
+              CULTURAL CONTEST HIGHLIGHTS
+            </h2>
+            <p class="text-xs italic text-zinc-400 dark:text-zinc-400 text-zinc-600 mt-1 max-w-md mx-auto">
+              Moments from the grand "Sweet of Mahabba" programs at Madrasathul Hasaniyya
+            </p>
+               <!-- Gallery Grid -->
+          <div v-if="photos.length === 0" class="text-center py-20 border border-dashed dark:border-brand-border/60 border-slate-200 rounded-3xl flex flex-col items-center justify-center bg-zinc-900/10">
+            <div class="p-4 bg-brand-primary/10 rounded-full text-brand-accent mb-4">
+              <i data-lucide="image" class="w-8 h-8"></i>
+            </div>
+            <h3 class="font-bold text-sm font-cinzel text-zinc-300 dark:text-zinc-300">No photos in gallery</h3>
+            <p class="text-xs text-zinc-500 font-sans mt-1 max-w-xs leading-relaxed italic">
+              Use the manager console to upload and add photos to this highlight gallery!
+            </p>
+          </div>
+
+          <div v-else class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+            <!-- Dynamic Gallery Cards -->
+            <div v-for="(photo, index) in photos" :key="photo.id" @click="openLightbox(index)" class="relative rounded-3xl overflow-hidden border dark:border-brand-border/60 border-slate-200 h-64 group bg-islamic-pattern shadow-sm cursor-pointer hover:scale-[1.01] hover:shadow-lg transition-all duration-300">
+              <div class="absolute inset-0 bg-gradient-to-t from-[#020503] via-[#020503]/50 to-transparent z-10 transition-all duration-300 group-hover:via-[#020503]/70"></div>
+              
+              <!-- Photo Image -->
+              <img :src="photo.url" class="absolute inset-0 w-full h-full object-cover group-hover:scale-105 transition-all duration-500" :alt="photo.title">
+              
+              <div class="absolute bottom-5 left-5 right-5 z-20 space-y-1">
+                <span class="text-[8px] font-bold text-brand-accent uppercase tracking-widest">{{ photo.category }}</span>
+                <h4 class="font-black text-sm text-zinc-105 font-cinzel">{{ photo.title }}</h4>
+                <p class="text-[10px] text-zinc-400 dark:text-zinc-400 text-zinc-450 leading-relaxed font-sans opacity-0 group-hover:opacity-100 transition-all duration-300">
+                  {{ photo.description }}
+                </p>
+              </div>
+            </div>
+          </div>       </div>
+
+        </div>
+
+        <!-- 5. LOGIN VIEW -->
+        <div v-if="currentView === 'login'" class="min-h-[70vh] flex items-center justify-center p-6 bg-islamic-pattern">
+          <div class="w-full max-w-md z-10 space-y-8">
+            <div class="text-center">
+              <div class="inline-flex items-center justify-center p-4 bg-brand-primary text-brand-accent rounded-full shadow-glow-primary mb-4 border border-brand-accent/20">
+                <i data-lucide="lock" class="w-6 h-6 text-brand-accent"></i>
+              </div>
+              <h2 class="text-3xl font-extrabold font-cinzel tracking-wider dark:text-zinc-100 text-brand-primary">MANAGER ACCESS</h2>
+              <p class="text-xs text-brand-accent font-sans mt-1.5 uppercase tracking-widest">Madrasathul Hasaniyya Portal</p>
+            </div>
+
+            <div class="rounded-3xl p-8 shadow-glass-dark border border-brand-accent/20 transition-all duration-300" :class="isDark ? 'glass-card-dark' : 'glass-card-light'">
+              <form @submit.prevent="handleLogin" class="space-y-5">
+                <div>
+                  <label class="block text-xs font-semibold text-zinc-400 uppercase tracking-wider mb-2 font-sans">Manager Email</label>
+                  <div class="relative">
+                    <div class="absolute inset-y-0 left-0 pl-3.5 flex items-center pointer-events-none">
+                      <i data-lucide="mail" class="h-4.5 w-4.5 text-zinc-500"></i>
+                    </div>
+                    <input type="email" v-model="loginEmail" placeholder="manager@hasaniyya.com" class="block w-full pl-11 pr-4 py-3 bg-zinc-900/30 dark:bg-zinc-900/30 dark:border-brand-border/80 bg-slate-50 border-zinc-300 rounded-2xl focus:outline-none focus:ring-1 focus:ring-brand-accent/40 text-xs transition-all font-sans" required />
+                  </div>
+                </div>
+
+                <div>
+                  <label class="block text-xs font-semibold text-zinc-400 uppercase tracking-wider mb-2 font-sans">Security Password</label>
+                  <div class="relative">
+                    <div class="absolute inset-y-0 left-0 pl-3.5 flex items-center pointer-events-none">
+                      <i data-lucide="key" class="h-4.5 w-4.5 text-zinc-500"></i>
+                    </div>
+                    <input type="password" v-model="loginPassword" placeholder="••••••••" class="block w-full pl-11 pr-4 py-3 bg-zinc-900/30 dark:bg-zinc-900/30 dark:border-brand-border/80 bg-slate-50 border-zinc-300 rounded-2xl focus:outline-none focus:ring-1 focus:ring-brand-accent/40 text-xs transition-all font-sans" required />
+                  </div>
+                </div>
+
+                <div v-if="loginError" class="text-xs text-red-400 bg-red-950/20 p-3.5 rounded-xl border border-red-900/30 flex items-start">
+                  <i data-lucide="alert-triangle" class="w-4 h-4 mr-2 flex-shrink-0 mt-0.5"></i>
+                  <span>{{ loginError }}</span>
+                </div>
+
+                <button type="submit" class="w-full py-3.5 px-6 bg-brand-accent hover:bg-brand-accent-hover text-zinc-950 font-extrabold rounded-2xl transition-all duration-300 shadow-glow-accent hover:scale-[1.01] active:scale-95 flex items-center justify-center uppercase tracking-wider text-xs font-sans">
+                  <span>Unlock Console</span>
+                  <i data-lucide="arrow-right" class="w-4 h-4 ml-2"></i>
+                </button>
+              </form>
+
+              <div class="mt-6 pt-5 border-t dark:border-brand-border/60 border-slate-100 text-center">
+                <span class="text-[10px] text-zinc-500 flex items-center justify-center gap-1.5 leading-relaxed font-sans italic">
+                  <i data-lucide="info" class="w-3.5 h-3.5 text-brand-accent shrink-0"></i>
+                  Default: manager@hasaniyya.com / hasaniyya2026
+                </span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- 6. LOGGED-IN MANAGER DASHBOARD VIEW -->
+        <div v-if="currentView === 'manager' && isAuthenticated" class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 space-y-6">
+          
+          <!-- Manager Console Header -->
+          <div class="relative rounded-3xl overflow-hidden p-6 sm:p-8 flex flex-col md:flex-row items-center justify-between gap-6 border shadow-glass-dark" :class="isDark ? 'glass-card-dark border-brand-border/50' : 'glass-card-light border-slate-200'">
+            <div class="absolute inset-0 bg-gradient-to-r from-brand-accent/5 to-transparent pointer-events-none"></div>
+            
+            <div class="space-y-2 text-center md:text-left z-10">
+              <span class="py-1 px-3 bg-brand-accent text-zinc-950 text-[9px] font-black uppercase tracking-widest rounded-full font-sans">
+                Admin Console
+              </span>
+              <h2 class="text-2xl font-black font-cinzel text-zinc-100 dark:text-zinc-100 text-brand-primary">
+                REGISTRAR & RESULTS CONSOLE
+              </h2>
+              <p class="text-xs text-zinc-450 dark:text-zinc-400 text-zinc-650 max-w-xl font-sans italic">
+                Manage student registries for LP, UP, and HS divisions, update live event status, and publish competition results.
+              </p>
+            </div>
+            
+            <!-- Quick Navigation Toggles -->
+            <div class="flex flex-wrap justify-center gap-3 z-10 w-full md:w-auto shrink-0">
+              <button @click="managerSubView = 'register'" class="py-2 px-3.5 rounded-xl font-bold text-xs transition-all flex items-center gap-1.5" :class="managerSubView === 'register' ? 'bg-brand-accent text-zinc-950 shadow-glow-accent' : 'bg-zinc-900/50 border border-brand-border dark:border-brand-border bg-slate-100 text-zinc-300 dark:text-zinc-300 text-zinc-600'">
+                <i data-lucide="user-plus" class="w-4 h-4"></i>
+                <span class="font-sans">Registrations</span>
+              </button>
+              <button @click="managerSubView = 'results'" class="py-2 px-3.5 rounded-xl font-bold text-xs transition-all flex items-center gap-1.5" :class="managerSubView === 'results' ? 'bg-brand-accent text-zinc-950 shadow-glow-accent' : 'bg-zinc-900/50 border border-brand-border dark:border-brand-border bg-slate-100 text-zinc-300 dark:text-zinc-300 text-zinc-600'">
+                <i data-lucide="trophy" class="w-4 h-4"></i>
+                <span class="font-sans">Results Entry</span>
+              </button>
+              <button @click="managerSubView = 'gallery'" class="py-2 px-3.5 rounded-xl font-bold text-xs transition-all flex items-center gap-1.5" :class="managerSubView === 'gallery' ? 'bg-brand-accent text-zinc-950 shadow-glow-accent' : 'bg-zinc-900/50 border border-brand-border dark:border-brand-border bg-slate-100 text-zinc-300 dark:text-zinc-300 text-zinc-600'">
+                <i data-lucide="image" class="w-4 h-4"></i>
+                <span class="font-sans">Gallery Manager</span>
+              </button>
+              <div class="h-8 w-px bg-brand-border/40 mx-0.5"></div>
+              <button @click="handleLogout" class="py-2 px-3.5 rounded-xl bg-red-950/20 hover:bg-red-900/20 text-red-400 font-bold text-xs border border-red-900/30 transition-all flex items-center gap-1.5">
+                <i data-lucide="log-out" class="w-4 h-4"></i>
+                <span class="font-sans">Exit</span>
+              </button>
+            </div>
+          </div>
+
+          <!-- SUBVIEW: REGISTER STUDENTS -->
+          <section v-if="managerSubView === 'register'" class="space-y-6">
+            
+            <div class="flex flex-col md:flex-row md:items-center justify-between gap-4">
+              <div>
+                <h3 class="text-lg font-black font-cinzel text-zinc-100 dark:text-zinc-100 text-brand-primary">
+                  Student Enrollment Directory
+                </h3>
+                <p class="text-xs text-zinc-400 dark:text-zinc-400 text-zinc-650 font-sans italic">
+                  Select a division and program to register students and build team rosters.
+                </p>
+              </div>
+
+              <!-- Search filter -->
+              <div class="relative w-full md:w-80">
+                <div class="absolute inset-y-0 left-0 pl-3.5 flex items-center pointer-events-none">
+                  <i data-lucide="search" class="h-4 w-4 text-zinc-550"></i>
+                </div>
+                <input type="text" v-model="searchFilter" placeholder="Search program, student or team..." class="block w-full pl-10 pr-4 py-2.5 bg-zinc-905 border dark:border-brand-border/60 border-zinc-300 rounded-2xl focus:outline-none focus:ring-1 focus:ring-brand-accent/40 text-xs transition-all font-sans" />
+              </div>
+            </div>
+
+            <!-- Categories listing for registrations -->
+            <div class="space-y-6">
+              <div v-for="category in categories" :key="category" class="rounded-3xl border overflow-hidden shadow-sm" :class="isDark ? 'glass-card-dark border-brand-border/50' : 'glass-card-light border-slate-200'">
+                
+                <div class="px-6 py-4 bg-zinc-900/20 dark:bg-zinc-900/10 bg-slate-100 border-b dark:border-brand-border/40 border-slate-200 flex sm:items-center justify-between gap-3">
+                  <div class="flex items-center">
+                    <div class="w-1 bg-brand-accent h-5 rounded-full mr-3.5"></div>
+                    <span class="font-extrabold text-sm sm:text-base font-cinzel dark:text-zinc-105 text-brand-primary">
+                      {{ category }} Division Enrollment
+                    </span>
+                  </div>
+                  <span class="text-[10px] font-semibold text-zinc-400 uppercase">
+                    {{ filteredProgramsByCategory(category).length }} Programs
+                  </span>
+                </div>
+
+                <div class="p-6">
+                  <div v-if="filteredProgramsByCategory(category).length === 0" class="text-center py-6 text-xs text-zinc-450 italic">
+                    No programs match search filters.
+                  </div>
+
+                  <div v-else class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
+                    <div v-for="prog in filteredProgramsByCategory(category)" :key="prog.id" class="p-5 rounded-2xl border flex flex-col justify-between gap-5 group" :class="isDark ? 'bg-brand-surface/40 border-brand-border/50 hover:border-brand-accent/25' : 'bg-slate-50 border-slate-100 hover:border-brand-secondary/25'">
+                      
+                      <div>
+                        <div class="flex items-start justify-between gap-3 mb-2.5">
+                          <h4 class="font-bold font-cinzel text-xs sm:text-sm text-zinc-100 dark:text-zinc-100 text-brand-primary group-hover:text-brand-accent transition-colors leading-tight">
+                            {{ prog.name }}
+                          </h4>
+                        </div>
+                        
+                        <div class="flex items-center gap-1.5 text-xs text-zinc-400 dark:text-zinc-400 text-zinc-650 font-sans">
+                          <i data-lucide="users" class="w-3.5 h-3.5 text-zinc-500"></i>
+                          <span>{{ prog.students.length }} registered participants</span>
+                        </div>
+
+                        <!-- House badge count breakdown -->
+                        <div v-if="prog.students.length > 0" class="flex flex-wrap gap-1 mt-2.5">
+                          <template v-for="team in TEAMS" :key="team.id">
+                            <span v-if="prog.students.filter(s => s.teamId === team.id).length > 0" class="inline-flex items-center gap-1 px-2.5 py-0.5 rounded text-[8px] font-bold border font-sans" :class="[team.textClass, team.borderClass, 'bg-zinc-950/25']">
+                              <span class="w-1.5 h-1.5 rounded-full" :class="team.bgClass"></span>
+                              {{ team.name.split('- ')[1] }}: {{ prog.students.filter(s => s.teamId === team.id).length }}
+                            </span>
+                          </template>
+                        </div>
+                      </div>
+
+                      <!-- Actions -->
+                      <div class="flex items-center gap-2 border-t dark:border-brand-border/40 border-slate-200/60 pt-4">
+                        <button @click="openParticipants(prog)" class="flex-1 py-2 px-3 rounded-xl border dark:border-zinc-800 border-slate-200 text-zinc-300 dark:text-zinc-300 text-zinc-600 font-bold text-xs hover:border-brand-accent hover:text-white transition-all flex items-center justify-center gap-1.5 active:scale-95 font-sans">
+                          <i data-lucide="eye" class="w-3.5 h-3.5"></i>
+                          <span>View ({{ prog.students.length }})</span>
+                        </button>
+                        
+                        <button @click="openAddStudent(prog)" class="flex-1 py-2 px-3 bg-brand-accent hover:bg-brand-accent-hover text-zinc-950 font-bold text-xs rounded-xl transition-all flex items-center justify-center gap-1.5 active:scale-95 shadow-sm font-sans">
+                          <i data-lucide="plus" class="w-3.5 h-3.5"></i>
+                          <span>Add</span>
+                        </button>
+                      </div>
+
+                    </div>
+                  </div>
+                </div>
+
+              </div>
+            </div>
+
+          </section>
+
+          <!-- SUBVIEW: PUBLISH RESULTS -->
+          <section v-if="managerSubView === 'results'" class="space-y-6">
+            
+            <div class="flex flex-col md:flex-row md:items-center justify-between gap-4">
+              <div>
+                <h3 class="text-lg font-black font-cinzel text-zinc-100 dark:text-zinc-100 text-brand-primary">
+                  Results Entry Console
+                </h3>
+                <p class="text-xs text-zinc-400 dark:text-zinc-400 text-zinc-650 font-sans italic">
+                  Change event status and enter 1st, 2nd, and 3rd place winners. Placements will update the points table automatically.
+                </p>
+              </div>
+
+              <!-- Search filter -->
+              <div class="relative w-full md:w-80">
+                <div class="absolute inset-y-0 left-0 pl-3.5 flex items-center pointer-events-none">
+                  <i data-lucide="search" class="h-4 w-4 text-zinc-550"></i>
+                </div>
+                <input type="text" v-model="searchFilter" placeholder="Search program..." class="block w-full pl-10 pr-4 py-2.5 bg-zinc-900 border dark:border-brand-border/60 border-zinc-300 rounded-2xl focus:outline-none focus:ring-1 focus:ring-brand-accent/40 text-xs transition-all font-sans" />
+              </div>
+            </div>
+
+            <!-- Categories listing for results -->
+            <div class="space-y-6">
+              <div v-for="category in categories" :key="category" class="rounded-3xl border overflow-hidden shadow-sm" :class="isDark ? 'glass-card-dark border-brand-border/50' : 'glass-card-light border-slate-200'">
+                
+                <div class="px-6 py-4 bg-zinc-900/20 dark:bg-zinc-900/10 bg-slate-100 border-b dark:border-brand-border/40 border-slate-200 flex sm:items-center justify-between gap-3">
+                  <div class="flex items-center">
+                    <div class="w-1 bg-brand-accent h-5 rounded-full mr-3.5"></div>
+                    <span class="font-extrabold text-sm sm:text-base font-cinzel dark:text-zinc-105 text-brand-primary">
+                      {{ category }} Division Programs
+                    </span>
+                  </div>
+                </div>
+
+                <div class="p-6">
+                  <div v-if="filteredProgramsByCategory(category).length === 0" class="text-center py-6 text-xs text-zinc-450 italic">
+                    No programs match search filters.
+                  </div>
+
+                  <div v-else class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
+                    <div v-for="prog in filteredProgramsByCategory(category)" :key="prog.id" class="p-5 rounded-2xl border flex flex-col justify-between gap-5 group" :class="isDark ? 'bg-brand-surface/40 border-brand-border/50 hover:border-brand-accent/25' : 'bg-slate-50 border-slate-100 hover:border-brand-secondary/25'">
+                      
+                      <div>
+                        <div class="flex items-start justify-between gap-3 mb-2.5">
+                          <h4 class="font-bold font-cinzel text-xs sm:text-sm text-zinc-100 dark:text-zinc-100 text-brand-primary leading-tight">
+                            {{ prog.name }}
+                          </h4>
+                        </div>
+                        
+                        <div class="flex items-center gap-2 mt-2">
+                          <span class="text-[9px] font-bold text-zinc-450 uppercase">Status:</span>
+                          <!-- Completed status picker -->
+                          <select :value="prog.status" @change="updateProgramStatus(prog.id, $event.target.value)" class="bg-zinc-900 dark:bg-brand-bg text-zinc-200 border dark:border-brand-border/60 border-zinc-350 rounded px-2 py-0.5 text-[10px] font-semibold focus:outline-none">
+                            <option value="Pending">Scheduled (Pending)</option>
+                            <option value="Ongoing">Live (Ongoing)</option>
+                            <option value="Completed">Completed</option>
+                          </select>
+                        </div>
+
+                        <!-- Results preview if complete -->
+                        <div v-if="prog.status === 'Completed'" class="mt-3.5 p-3 rounded-xl bg-zinc-950/30 border dark:border-brand-border/30 border-slate-150 space-y-1">
+                          <div v-if="prog.result" class="text-[10px] space-y-0.5 font-sans">
+                            <p class="text-zinc-300"><span class="text-brand-accent font-bold">🥇 1st:</span> {{ getStudentName(prog, prog.result.first) }}</p>
+                            <p class="text-zinc-355" v-if="prog.result.second"><span class="text-zinc-400 font-bold">🥈 2nd:</span> {{ getStudentName(prog, prog.result.second) }}</p>
+                            <p class="text-zinc-355" v-if="prog.result.third"><span class="text-amber-600 font-bold">🥉 3rd:</span> {{ getStudentName(prog, prog.result.third) }}</p>
+                          </div>
+                          <p v-else class="text-[10px] text-red-400 italic font-sans flex items-center gap-1.5">
+                            <i data-lucide="alert-triangle" class="w-3.5 h-3.5 shrink-0"></i>
+                            <span>Results not entered yet!</span>
+                          </p>
+                        </div>
+                      </div>
+
+                      <!-- Results Publish Button -->
+                      <div class="border-t dark:border-brand-border/40 border-slate-200/60 pt-4">
+                        <button v-if="prog.students.length === 0" disabled class="w-full py-2 px-3 rounded-xl bg-zinc-900/10 border border-zinc-900/30 text-zinc-600 font-bold text-xs flex items-center justify-center gap-1.5 cursor-not-allowed font-sans">
+                          <i data-lucide="user-minus" class="w-3.5 h-3.5"></i>
+                          <span>No Candidates Enrolled</span>
+                        </button>
+                        <button v-else @click="openManageResults(prog)" class="w-full py-2 px-3 bg-brand-accent hover:bg-brand-accent-hover text-zinc-950 font-bold text-xs rounded-xl transition-all flex items-center justify-center gap-1.5 active:scale-95 shadow-sm font-sans">
+                          <i data-lucide="award" class="w-3.5 h-3.5"></i>
+                          <span>Manage Results</span>
+                        </button>
+                      </div>
+
+                    </div>
+                  </div>
+                </div>
+
+              </div>
+            </div>
+
+          </section>
+
+          <!-- SUBVIEW: GALLERY MANAGER -->
+          <section v-if="managerSubView === 'gallery'" class="space-y-6">
+            <div class="flex flex-col md:flex-row md:items-center justify-between gap-4">
+              <div>
+                <h3 class="text-lg font-black font-cinzel text-zinc-105 dark:text-zinc-105 text-brand-primary">
+                  Gallery Manager
+                </h3>
+                <p class="text-xs text-zinc-450 dark:text-zinc-400 text-zinc-650 font-sans italic">
+                  Upload new photos or add image links to display in the public highlights gallery.
+                </p>
+              </div>
+            </div>
+
+            <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
+              <!-- Add New Photo Form -->
+              <div class="lg:col-span-1 p-6 rounded-3xl border flex flex-col gap-4" :class="isDark ? 'glass-card-dark border-brand-border/50' : 'glass-card-light border-slate-200'">
+                <h4 class="font-bold text-sm font-cinzel text-zinc-100 dark:text-zinc-100 text-brand-primary border-b dark:border-brand-border/50 border-slate-150 pb-2">
+                  Add New Photo
+                </h4>
+                
+                <div class="space-y-3.5">
+                  <div>
+                    <label class="block text-xs font-semibold text-zinc-400 uppercase tracking-wider mb-1.5 font-sans">Photo Title</label>
+                    <input type="text" v-model="newPhotoTitle" placeholder="e.g. Oppana Contest" class="block w-full px-4 py-2.5 bg-zinc-900/30 dark:bg-zinc-900/30 dark:border-brand-border/80 bg-slate-50 border-zinc-350 rounded-xl focus:outline-none focus:ring-1 focus:ring-brand-accent/40 text-xs transition-all font-sans text-white dark:text-white text-zinc-800" required />
+                  </div>
+
+                  <div>
+                    <label class="block text-xs font-semibold text-zinc-400 uppercase tracking-wider mb-1.5 font-sans">Category / Tag</label>
+                    <select v-model="newPhotoCategory" class="block w-full px-4 py-2.5 bg-zinc-900/30 dark:bg-zinc-900/30 dark:border-brand-border/80 bg-slate-50 border-zinc-350 rounded-xl focus:outline-none focus:ring-1 focus:ring-brand-accent/40 text-xs transition-all font-sans text-white dark:text-white text-zinc-800">
+                      <option value="LP Division">LP Division</option>
+                      <option value="UP Division">UP Division</option>
+                      <option value="High School">High School</option>
+                      <option value="General">General</option>
+                    </select>
+                  </div>
+
+                  <div>
+                    <label class="block text-xs font-semibold text-zinc-400 uppercase tracking-wider mb-1.5 font-sans">Description</label>
+                    <textarea v-model="newPhotoDescription" rows="2" placeholder="Brief description of the moment..." class="block w-full px-4 py-2.5 bg-zinc-900/30 dark:bg-zinc-900/30 dark:border-brand-border/80 bg-slate-50 border-zinc-350 rounded-xl focus:outline-none focus:ring-1 focus:ring-brand-accent/40 text-xs transition-all font-sans text-white dark:text-white text-zinc-800"></textarea>
+                  </div>
+
+                  <div>
+                    <label class="block text-xs font-semibold text-zinc-400 uppercase tracking-wider mb-1.5 font-sans">Source Type</label>
+                    <div class="flex gap-2">
+                      <button type="button" @click="newPhotoSource = 'file'" class="flex-1 py-1.5 px-3 rounded-lg border text-xs font-bold font-sans transition-all" :class="newPhotoSource === 'file' ? 'bg-brand-primary/20 border-brand-accent text-brand-accent' : 'dark:border-brand-border border-slate-200 text-zinc-400'">
+                        Upload File
+                      </button>
+                      <button type="button" @click="newPhotoSource = 'url'" class="flex-1 py-1.5 px-3 rounded-lg border text-xs font-bold font-sans transition-all" :class="newPhotoSource === 'url' ? 'bg-brand-primary/20 border-brand-accent text-brand-accent' : 'dark:border-brand-border border-slate-200 text-zinc-400'">
+                        Image URL
+                      </button>
+                    </div>
+                  </div>
+
+                  <!-- File Upload Input -->
+                  <div v-if="newPhotoSource === 'file'">
+                    <label class="block text-xs font-semibold text-zinc-400 uppercase tracking-wider mb-1.5 font-sans">Choose Image File</label>
+                    <input type="file" ref="photoFileRef" accept="image/*" @change="handlePhotoUpload" class="block w-full text-xs text-zinc-400 file:mr-4 file:py-2 file:px-4 file:rounded-xl file:border-0 file:text-xs file:font-bold file:bg-brand-primary/20 file:text-brand-accent hover:file:bg-brand-primary/30 transition-all font-sans cursor-pointer" />
+                  </div>
+
+                  <!-- Image URL Input -->
+                  <div v-else>
+                    <label class="block text-xs font-semibold text-zinc-400 uppercase tracking-wider mb-1.5 font-sans">Image Web URL</label>
+                    <input type="text" v-model="newPhotoUrl" placeholder="https://example.com/image.jpg" class="block w-full px-4 py-2.5 bg-zinc-900/30 dark:bg-zinc-900/30 dark:border-brand-border/80 bg-slate-50 border-zinc-350 rounded-xl focus:outline-none focus:ring-1 focus:ring-brand-accent/40 text-xs transition-all font-sans text-white dark:text-white text-zinc-800" />
+                  </div>
+                </div>
+
+                <button @click="addPhoto" class="w-full mt-2 py-3 bg-brand-accent hover:bg-brand-accent-hover text-zinc-950 font-extrabold rounded-xl transition-all shadow-glow-accent active:scale-95 flex items-center justify-center gap-1.5 font-sans text-xs">
+                  <i data-lucide="plus" class="w-4 h-4"></i>
+                  <span>Add Photo to Gallery</span>
+                </button>
+              </div>
+
+              <!-- Gallery List View -->
+              <div class="lg:col-span-2 p-6 rounded-3xl border flex flex-col gap-4" :class="isDark ? 'glass-card-dark border-brand-border/50' : 'glass-card-light border-slate-200'">
+                <h4 class="font-bold text-sm font-cinzel text-zinc-100 dark:text-zinc-100 text-brand-primary border-b dark:border-brand-border/50 border-slate-150 pb-2 flex justify-between items-center">
+                  <span>Current Photos ({{ photos.length }})</span>
+                </h4>
+
+                <div v-if="photos.length === 0" class="text-center py-12 text-zinc-450 italic text-xs font-sans">
+                  Gallery is empty. Use the left form to add your first photo.
+                </div>
+
+                <div v-else class="grid grid-cols-2 sm:grid-cols-3 gap-4 overflow-y-auto max-h-[480px] pr-1 custom-scrollbar">
+                  <div v-for="photo in photos" :key="photo.id" class="relative rounded-2xl overflow-hidden border dark:border-brand-border border-slate-200 aspect-video group bg-zinc-950 shadow-sm">
+                    <img :src="photo.url" class="w-full h-full object-cover group-hover:scale-105 transition-all duration-300" :alt="photo.title">
+                    <div class="absolute inset-0 bg-gradient-to-t from-black/85 via-transparent to-transparent opacity-95 transition-all"></div>
+                    
+                    <!-- Delete Button -->
+                    <button @click="deletePhoto(photo.id)" title="Delete Photo" class="absolute top-2 right-2 p-1.5 rounded-lg bg-red-950/70 hover:bg-red-900 border border-red-900/30 text-red-200 transition-all shrink-0 opacity-0 group-hover:opacity-100 active:scale-95 z-20">
+                      <i data-lucide="trash" class="w-3.5 h-3.5"></i>
+                    </button>
+
+                    <!-- Text details -->
+                    <div class="absolute bottom-2 left-2 right-2 text-left z-10">
+                      <h5 class="font-bold text-[10px] text-white truncate leading-tight">{{ photo.title }}</h5>
+                      <span class="text-[8px] text-brand-accent uppercase tracking-widest block font-sans">{{ photo.category }}</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </section>
+
+          <!-- DATABASE SETTINGS & UTILITIES SECTION -->
+          <section class="glass-card-dark rounded-3xl p-6 border border-brand-accent/15 flex flex-col sm:flex-row items-center justify-between gap-4 shadow-glass-dark" :class="isDark ? 'glass-card-dark' : 'glass-card-light'">
+            <div>
+              <h4 class="font-bold text-sm sm:text-base font-cinzel text-zinc-100 dark:text-zinc-100 text-brand-primary">
+                Backup / Restore Database
+              </h4>
+              <p class="text-[10px] text-zinc-450 dark:text-zinc-400 text-zinc-650 font-sans italic mt-0.5">
+                Save the current program registrations and placement results into a JSON file, or restore data.
+              </p>
+            </div>
+            
+            <div class="flex items-center gap-3 w-full sm:w-auto shrink-0 justify-center">
+              <button @click="exportBackup" class="py-2.5 px-4 rounded-xl border dark:border-zinc-800 border-slate-200 text-zinc-300 dark:text-zinc-300 text-zinc-600 hover:border-brand-accent hover:text-white transition-all flex items-center gap-1.5 text-xs font-bold font-sans">
+                <i data-lucide="download-cloud" class="w-4 h-4 text-brand-accent"></i>
+                <span>Export Backup</span>
+              </button>
+
+              <label class="py-2.5 px-4 rounded-xl border dark:border-zinc-800 border-slate-200 text-zinc-300 dark:text-zinc-300 text-zinc-600 hover:border-brand-accent hover:text-white transition-all flex items-center gap-1.5 text-xs font-bold cursor-pointer font-sans">
+                <i data-lucide="upload-cloud" class="w-4 h-4 text-brand-accent"></i>
+                <span>Import Backup</span>
+                <input type="file" @change="handleImportBackup" accept=".json" class="hidden" />
+              </label>
+            </div>
+          </section>
+
+        </div>
+
+      </main>
+
+      <!-- PUBLIC FOOTER -->
+      <footer class="py-8 border-t dark:border-brand-border border-brand-lightBorder dark:bg-[#030906] bg-slate-200 transition-all text-center">
+        <div class="max-w-7xl mx-auto px-4 space-y-4">
+          <div class="flex justify-center items-center gap-2">
+            <div class="w-7 h-7 bg-brand-primary border border-brand-accent/20 rounded flex items-center justify-center text-brand-accent text-xs font-serif font-bold">
+              م
+            </div>
+            <span class="font-cinzel text-xs font-bold tracking-widest text-zinc-300 dark:text-zinc-300 text-brand-primary">
+              MADRASATHUL HASANIYYA, ADIKKUMPARA
+            </span>
+          </div>
+          <p class="text-[10px] text-zinc-550 dark:text-zinc-500 text-zinc-600 max-w-md mx-auto leading-relaxed font-sans">
+            "Sweet of Mahabba '26" Cultural Festival Results & Schedules Portal.<br>
+            All Rights Reserved &copy; 2026. Managed by Madrasathul Hasaniyya Committee.
+          </p>
+        </div>
+      </footer>
+
+      <!-- MODAL: ENROLL STUDENT (ADMIN ONLY) -->
+      <transition enter-active-class="ease-out duration-300" enter-from-class="opacity-0" enter-to-class="opacity-100" leave-active-class="ease-in duration-200" leave-from-class="opacity-100" leave-to-class="opacity-0">
+        <div v-if="showAddStudentModal" class="fixed inset-0 z-50 overflow-y-auto" role="dialog" aria-modal="true">
+          <div class="fixed inset-0 bg-black/80 backdrop-blur-sm" @click="showAddStudentModal = false"></div>
+          
+          <div class="flex min-h-screen items-center justify-center p-4">
+            <div class="relative max-w-md w-full rounded-3xl shadow-xl overflow-hidden border border-brand-accent/20 p-6 space-y-6 transform transition-all" :class="isDark ? 'glass-card-dark' : 'glass-card-light'">
+              
+              <div class="flex items-center justify-between pb-3 border-b dark:border-brand-border border-slate-100">
+                <div class="flex items-center gap-2 text-brand-accent">
+                  <i data-lucide="user-plus" class="w-5 h-5"></i>
+                  <h3 class="text-base font-extrabold font-cinzel text-zinc-100 dark:text-zinc-105 text-brand-primary">Enroll Candidate</h3>
+                </div>
+                <button @click="showAddStudentModal = false" class="p-1 rounded-lg text-zinc-400 hover:bg-zinc-900/50 transition-all">
+                  <i data-lucide="x" class="w-5 h-5"></i>
+                </button>
+              </div>
+
+              <!-- Program Badge -->
+              <div class="p-4 bg-zinc-950/40 rounded-2xl border dark:border-brand-border/60 border-slate-150">
+                <span class="text-[9px] font-bold text-zinc-450 uppercase block tracking-wider leading-none">Category Program</span>
+                <span class="font-extrabold text-sm text-zinc-150 dark:text-zinc-100 text-brand-primary leading-tight mt-1.5 block">
+                  {{ selectedProgram?.name }}
+                </span>
+                <span class="text-[10px] text-brand-accent block mt-1.5 font-bold uppercase tracking-widest leading-none">
+                  {{ selectedProgram?.category }} Division
+                </span>
+              </div>
+
+              <!-- Fields -->
+              <div class="space-y-4">
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                  <div>
+                    <label class="block text-xs font-semibold text-zinc-400 uppercase tracking-wider mb-2 font-sans">Full Name</label>
+                    <input type="text" v-model="newStudentName" @keyup.enter="submitStudent" placeholder="Student Name" class="block w-full px-4 py-3 bg-zinc-900/30 dark:bg-zinc-900/30 dark:border-brand-border/80 bg-slate-50 border-zinc-350 rounded-2xl focus:outline-none focus:ring-1 focus:ring-brand-accent/40 text-xs transition-all font-sans text-white dark:text-white text-zinc-800" required />
+                  </div>
+                  <div>
+                    <label class="block text-xs font-semibold text-zinc-400 uppercase tracking-wider mb-2 font-sans">Class/Grade</label>
+                    <input type="text" v-model="newStudentClass" @keyup.enter="submitStudent" placeholder="e.g. Class 10" class="block w-full px-4 py-3 bg-zinc-900/30 dark:bg-zinc-900/30 dark:border-brand-border/80 bg-slate-50 border-zinc-350 rounded-2xl focus:outline-none focus:ring-1 focus:ring-brand-accent/40 text-xs transition-all font-sans text-white dark:text-white text-zinc-800" required />
+                  </div>
+                </div>
+
+                <div>
+                  <label class="block text-xs font-semibold text-zinc-400 uppercase tracking-wider mb-2.5 font-sans">House Selection</label>
+                  <div class="grid grid-cols-3 gap-3">
+                    <button v-for="team in TEAMS" :key="team.id" @click="newStudentTeam = team.id" class="p-3 rounded-2xl border text-center flex flex-col items-center gap-2 transition-all relative overflow-hidden" :class="newStudentTeam === team.id ? [team.borderClass, 'bg-brand-primary/10 ring-1 dark:ring-brand-accent ring-brand-secondary'] : 'dark:border-brand-border/60 border-slate-250 hover:bg-brand-primary/5'">
+                      <div class="p-2 text-zinc-950 rounded-xl" :class="team.bgClass">
+                        <i :data-lucide="team.icon" class="w-4 h-4 text-zinc-950"></i>
+                      </div>
+                      <span class="text-[9px] font-black tracking-wider uppercase text-zinc-300 dark:text-zinc-300 text-zinc-700 leading-tight">
+                        {{ team.name.split('- ')[1] }}
+                      </span>
+                      <div v-if="newStudentTeam === team.id" class="absolute top-1 right-1 w-3.5 h-3.5 rounded-full flex items-center justify-center" :class="team.bgClass">
+                        <i data-lucide="check" class="w-2.5 text-zinc-950 font-extrabold"></i>
+                      </div>
+                    </button>
+                  </div>
+                </div>
+              </div>
+
+              <div v-if="registerError" class="text-xs text-red-400 bg-red-950/20 p-3 rounded-xl border border-red-900/30 flex items-start">
+                <i data-lucide="alert-triangle" class="w-4 h-4 mr-2 shrink-0 mt-0.5"></i>
+                <span>{{ registerError }}</span>
+              </div>
+
+              <!-- CTA Controls -->
+              <div class="flex items-center gap-3 pt-3 border-t dark:border-brand-border border-slate-100">
+                <button @click="showAddStudentModal = false" class="flex-1 py-3 px-4 rounded-xl border dark:border-zinc-800 border-slate-200 text-zinc-300 font-bold text-xs hover:bg-zinc-900/50 transition-all font-sans">
+                  Cancel
+                </button>
+                <button @click="submitStudent" class="flex-1 py-3 px-4 bg-brand-accent hover:bg-brand-accent-hover text-zinc-950 font-extrabold text-xs rounded-xl transition-all shadow-glow-accent active:scale-95 flex items-center justify-center gap-1.5 font-sans">
+                  <i data-lucide="check" class="w-4 h-4"></i>
+                  <span>Register Candidate</span>
+                </button>
+              </div>
+
+            </div>
+          </div>
+        </div>
+      </transition>
+
+      <!-- MODAL: VIEW & DELETE ENROLLED PARTICIPANTS (ADMIN ONLY) -->
+      <transition enter-active-class="ease-out duration-300" enter-from-class="opacity-0" enter-to-class="opacity-100" leave-active-class="ease-in duration-200" leave-from-class="opacity-100" leave-to-class="opacity-0">
+        <div v-if="showParticipantsModal" class="fixed inset-0 z-50 overflow-y-auto" role="dialog" aria-modal="true">
+          <div class="fixed inset-0 bg-black/80 backdrop-blur-sm" @click="showParticipantsModal = false"></div>
+          
+          <div class="flex min-h-screen items-center justify-center p-4">
+            <div class="relative max-w-lg w-full rounded-3xl shadow-xl overflow-hidden border border-brand-accent/20 p-6 space-y-6 transform transition-all flex flex-col max-h-[85vh]" :class="isDark ? 'glass-card-dark' : 'glass-card-light'">
+              
+              <div class="flex items-center justify-between pb-3 border-b dark:border-brand-border border-slate-100 shrink-0">
+                <div class="flex items-center gap-2 text-brand-accent">
+                  <i data-lucide="users" class="w-5 h-5"></i>
+                  <div>
+                    <h3 class="text-base font-extrabold font-cinzel text-zinc-100 dark:text-zinc-105 text-brand-primary">Candidate Registry</h3>
+                    <p class="text-[9px] font-bold text-zinc-450 uppercase mt-0.5 font-sans">{{ selectedProgram?.category }} Division</p>
+                  </div>
+                </div>
+                <button @click="showParticipantsModal = false" class="p-1 rounded-lg text-zinc-400 hover:bg-zinc-900/50 transition-all">
+                  <i data-lucide="x" class="w-5 h-5"></i>
+                </button>
+              </div>
+
+              <!-- Program Details -->
+              <div class="p-4 bg-slate-100 dark:bg-zinc-900/40 rounded-2xl border dark:border-brand-border/60 border-slate-150 flex items-center justify-between shrink-0">
+                <div>
+                  <span class="font-extrabold text-sm text-zinc-100 dark:text-zinc-100 text-brand-primary leading-tight block">
+                    {{ selectedProgram?.name }}
+                  </span>
+                  <span class="text-[9px] text-zinc-450 block mt-1.5 font-sans italic">
+                    ID Reference: {{ selectedProgram?.id }}
+                  </span>
+                </div>
+                <div class="text-right">
+                  <span class="text-[9px] font-bold text-zinc-400 uppercase tracking-wider block leading-none">Roster Count</span>
+                  <span class="text-2xl font-black text-brand-accent font-sans mt-1.5 block leading-none">{{ selectedProgram?.students?.length || 0 }}</span>
+                </div>
+              </div>
+
+              <!-- Registry List -->
+              <div class="flex-grow overflow-y-auto custom-scrollbar pr-1 -mr-2 space-y-4">
+                <div v-if="!selectedProgram?.students || selectedProgram.students?.length === 0" class="text-center py-10 text-zinc-450 flex flex-col items-center justify-center gap-2">
+                  <i data-lucide="user-minus" class="w-7 h-7 text-zinc-600"></i>
+                  <p class="font-bold text-xs text-zinc-300 dark:text-zinc-300 text-zinc-700">Roster is empty</p>
+                  <p class="text-[10px] text-zinc-500 italic max-w-xs font-sans">
+                    No candidates are registered for this item yet. Use the button below to register a student.
+                  </p>
+                </div>
+
+                <div v-else class="space-y-2">
+                  <div v-for="student in (selectedProgram?.students || [])" :key="student.id" class="p-3 rounded-2xl border transition-all flex items-center justify-between gap-4 group" :class="isDark ? 'bg-brand-surface/40 border-brand-border/60 hover:border-zinc-800' : 'bg-slate-50 border-slate-100 hover:border-slate-200'">
+                    
+                    <div class="flex items-center gap-3">
+                      <!-- Initial character icon in house color -->
+                      <div class="w-8 h-8 rounded-lg text-zinc-950 font-black text-xs flex items-center justify-center shadow-sm shrink-0" :class="getTeamInfo(student.teamId).bgClass">
+                        {{ student.name.charAt(0).toUpperCase() }}
+                      </div>
+                      
+                      <div>
+                        <h4 class="font-bold text-xs sm:text-sm text-zinc-200 dark:text-zinc-100 text-zinc-800 leading-tight">{{ student.name }}</h4>
+                        <div class="flex items-center gap-2 mt-1">
+                          <span class="inline-flex items-center gap-1 text-[8px] font-bold px-2 py-0.5 rounded border font-sans" :class="[getTeamInfo(student.teamId).textClass, getTeamInfo(student.teamId).borderClass, 'bg-zinc-900/20']">
+                            {{ getTeamInfo(student.teamId).name.split('- ')[1] }}
+                          </span>
+                          <span class="inline-flex items-center text-[8px] font-bold px-1.5 py-0.5 rounded border border-brand-accent/20 bg-brand-accent/5 text-brand-accent font-sans">
+                            Class {{ student.classLevel }}
+                          </span>
+                        </div>
+                      </div>
+                    </div>
+
+                    <!-- Remove Button -->
+                    <button @click="removeStudent(student.id)" title="De-register candidate" class="p-2 rounded-xl text-red-400 hover:bg-red-950/20 border border-transparent hover:border-red-900/30 transition-all shrink-0 active:scale-95">
+                      <i data-lucide="trash" class="w-3.5 h-3.5"></i>
+                    </button>
+
+                  </div>
+                </div>
+              </div>
+
+              <!-- Footer -->
+              <div class="flex items-center gap-3 pt-3 border-t dark:border-brand-border border-slate-100 shrink-0">
+                <button @click="showParticipantsModal = false" class="flex-1 py-3 px-4 rounded-xl border dark:border-zinc-800 border-slate-200 text-zinc-300 font-bold text-xs hover:bg-zinc-900/50 transition-all font-sans">
+                  Close
+                </button>
+                <button @click="openAddStudent(selectedProgram)" class="flex-1 py-3 px-4 bg-brand-accent hover:bg-brand-accent-hover text-zinc-950 font-extrabold text-xs rounded-xl transition-all shadow-glow-accent active:scale-95 flex items-center justify-center gap-1.5 font-sans">
+                  <i data-lucide="plus" class="w-3.5 h-3.5"></i>
+                  <span>Register Candidate</span>
+                </button>
+              </div>
+
+            </div>
+          </div>
+        </div>
+      </transition>
+
+      <!-- MODAL: MANAGE & CHOOSE RESULTS (ADMIN ONLY) -->
+      <transition enter-active-class="ease-out duration-300" enter-from-class="opacity-0" enter-to-class="opacity-100" leave-active-class="ease-in duration-200" leave-from-class="opacity-100" leave-to-class="opacity-0">
+        <div v-if="showResultsModal" class="fixed inset-0 z-50 overflow-y-auto" role="dialog" aria-modal="true">
+          <div class="fixed inset-0 bg-black/80 backdrop-blur-sm" @click="showResultsModal = false"></div>
+          
+          <div class="flex min-h-screen items-center justify-center p-4">
+            <div class="relative max-w-md w-full rounded-3xl shadow-xl overflow-hidden border border-brand-accent/20 p-6 space-y-6 transform transition-all" :class="isDark ? 'glass-card-dark' : 'glass-card-light'">
+              
+              <div class="flex items-center justify-between pb-3 border-b dark:border-brand-border border-slate-100">
+                <div class="flex items-center gap-2 text-brand-accent">
+                  <i data-lucide="award" class="w-5 h-5"></i>
+                  <h3 class="text-base font-extrabold font-cinzel text-zinc-100 dark:text-zinc-105 text-brand-primary">Grade Placements</h3>
+                </div>
+                <button @click="showResultsModal = false" class="p-1 rounded-lg text-zinc-400 hover:bg-zinc-900/50 transition-all">
+                  <i data-lucide="x" class="w-5 h-5"></i>
+                </button>
+              </div>
+
+              <!-- Program Badge -->
+              <div class="p-4 bg-zinc-950/40 rounded-2xl border dark:border-brand-border/60 border-slate-150">
+                <span class="font-extrabold text-sm text-zinc-100 dark:text-zinc-100 text-brand-primary leading-tight block">
+                  {{ selectedProgram?.name }}
+                </span>
+                <span class="text-[10px] text-zinc-400 block mt-1.5 font-sans">
+                  Total Enrolled Contestants: <strong class="text-brand-accent">{{ selectedProgram?.students?.length || 0 }}</strong>
+                </span>
+              </div>
+
+              <!-- Fields selection -->
+              <div class="space-y-4">
+                <!-- 1st Place Selection -->
+                <div>
+                  <label class="block text-xs font-semibold text-zinc-400 uppercase tracking-wider mb-2 font-sans">🥇 First Place Winner</label>
+                  <select v-model="resultFirst" class="block w-full px-4 py-3 bg-zinc-900/30 dark:bg-zinc-900/30 dark:border-brand-border/80 bg-slate-50 border-zinc-350 rounded-2xl focus:outline-none focus:ring-1 focus:ring-brand-accent/40 text-xs transition-all font-sans text-white dark:text-white text-zinc-800">
+                    <option value="" disabled>-- Select First Place --</option>
+                    <option v-for="student in selectedProgram?.students" :key="student.id" :value="student.id">
+                      {{ student.name }} (Class {{ student.classLevel }}) - {{ getTeamInfo(student.teamId).name.split('- ')[1] }}
+                    </option>
+                  </select>
+                </div>
+
+                <!-- 2nd Place Selection -->
+                <div>
+                  <label class="block text-xs font-semibold text-zinc-400 uppercase tracking-wider mb-2 font-sans">🥈 Second Place Winner (Optional)</label>
+                  <select v-model="resultSecond" class="block w-full px-4 py-3 bg-zinc-900/30 dark:bg-zinc-900/30 dark:border-brand-border/80 bg-slate-50 border-zinc-350 rounded-2xl focus:outline-none focus:ring-1 focus:ring-brand-accent/40 text-xs transition-all font-sans text-white dark:text-white text-zinc-800">
+                    <option value="">-- No Second Place --</option>
+                    <option v-for="student in selectedProgram?.students" :key="student.id" :value="student.id">
+                      {{ student.name }} (Class {{ student.classLevel }}) - {{ getTeamInfo(student.teamId).name.split('- ')[1] }}
+                    </option>
+                  </select>
+                </div>
+
+                <!-- 3rd Place Selection -->
+                <div>
+                  <label class="block text-xs font-semibold text-zinc-400 uppercase tracking-wider mb-2 font-sans">🥉 Third Place Winner (Optional)</label>
+                  <select v-model="resultThird" class="block w-full px-4 py-3 bg-zinc-900/30 dark:bg-zinc-900/30 dark:border-brand-border/80 bg-slate-50 border-zinc-350 rounded-2xl focus:outline-none focus:ring-1 focus:ring-brand-accent/40 text-xs transition-all font-sans text-white dark:text-white text-zinc-800">
+                    <option value="">-- No Third Place --</option>
+                    <option v-for="student in selectedProgram?.students" :key="student.id" :value="student.id">
+                      {{ student.name }} (Class {{ student.classLevel }}) - {{ getTeamInfo(student.teamId).name.split('- ')[1] }}
+                    </option>
+                  </select>
+                </div>
+              </div>
+
+              <!-- Error -->
+              <div v-if="resultError" class="text-xs text-red-400 bg-red-950/20 p-3 rounded-xl border border-red-900/30 flex items-start">
+                <i data-lucide="alert-triangle" class="w-4 h-4 mr-2 shrink-0 mt-0.5"></i>
+                <span>{{ resultError }}</span>
+              </div>
+
+              <!-- CTA -->
+              <div class="flex items-center gap-3 pt-3 border-t dark:border-brand-border border-slate-100">
+                <button @click="showResultsModal = false" class="flex-1 py-3 px-4 rounded-xl border dark:border-zinc-800 border-slate-200 text-zinc-300 font-bold text-xs hover:bg-zinc-900/50 transition-all font-sans">
+                  Cancel
+                </button>
+                <button @click="submitProgramResult" class="flex-1 py-3 px-4 bg-brand-accent hover:bg-brand-accent-hover text-zinc-950 font-extrabold text-xs rounded-xl transition-all shadow-glow-accent active:scale-95 flex items-center justify-center gap-1.5 font-sans">
+                  <i data-lucide="check" class="w-4 h-4"></i>
+                  <span>Publish Placements</span>
+                </button>
+              </div>
+
+            </div>
+          </div>
+        </div>
+      </transition>
+
+      <!-- LIGHTBOX MODAL (PUBLIC GALLERY) -->
+      <transition enter-active-class="ease-out duration-300" enter-from-class="opacity-0" enter-to-class="opacity-100" leave-active-class="ease-in duration-200" leave-from-class="opacity-100" leave-to-class="opacity-0">
+        <div v-if="showLightbox && photos.length > 0" class="fixed inset-0 z-50 flex flex-col items-center justify-center p-4 bg-black/90 backdrop-blur-md" role="dialog" aria-modal="true">
+          <!-- Close click-away -->
+          <div class="absolute inset-0 cursor-zoom-out" @click="closeLightbox"></div>
+          
+          <div class="relative max-w-4xl w-full flex flex-col items-center justify-center z-10 space-y-4">
+            <!-- Close button -->
+            <button @click="closeLightbox" class="absolute top-[-30px] right-2 p-2 text-zinc-400 hover:text-white transition-all bg-zinc-900/50 hover:bg-zinc-800/50 rounded-full hover:scale-105 z-35">
+              <i data-lucide="x" class="w-6 h-6"></i>
+            </button>
+            
+            <!-- Main Content Area -->
+            <div class="flex items-center justify-between w-full gap-4">
+              <!-- Prev Button -->
+              <button @click="prevLightbox" class="p-3 text-zinc-350 hover:text-brand-accent transition-all bg-zinc-900/60 hover:bg-zinc-800/60 rounded-full hover:scale-105 active:scale-95 shrink-0 z-20">
+                <i data-lucide="chevron-left" class="w-6 h-6"></i>
+              </button>
+              
+              <!-- Image -->
+              <div class="max-h-[65vh] flex items-center justify-center rounded-2xl overflow-hidden border border-brand-accent/20 shadow-2xl bg-zinc-950 relative">
+                <img :src="photos[lightboxIndex].url" class="object-contain max-h-[65vh] max-w-full select-none" :alt="photos[lightboxIndex].title">
+              </div>
+              
+              <!-- Next Button -->
+              <button @click="nextLightbox" class="p-3 text-zinc-350 hover:text-brand-accent transition-all bg-zinc-900/60 hover:bg-zinc-800/60 rounded-full hover:scale-105 active:scale-95 shrink-0 z-20">
+                <i data-lucide="chevron-right" class="w-6 h-6"></i>
+              </button>
+            </div>
+            
+            <!-- Details description bottom block -->
+            <div class="text-center max-w-xl space-y-1 text-zinc-200">
+              <span class="text-[9px] font-black text-brand-accent uppercase tracking-widest font-sans">{{ photos[lightboxIndex].category }}</span>
+              <h3 class="text-base sm:text-lg font-black text-white font-cinzel leading-snug">{{ photos[lightboxIndex].title }}</h3>
+              <p class="text-xs text-zinc-300 font-sans leading-relaxed px-4">{{ photos[lightboxIndex].description }}</p>
+            </div>
+          </div>
+        </div>
+      </transition>
+
+    </div>
+
+    <!-- App Logic -->
+    <script src="/app.js"></script>
+  </body>
+</html>
+
